@@ -31,3 +31,13 @@ Código fuente de la voz: `src/lib/voice/companion.ts`.
 | Roles / botones | `roleNeedReason` en `ui-actions` |
 
 La unicidad del producto es **cómo acompaña**: honestidad, siguiente paso, rol consciente y evidencia revisable — no “más IA fingida”.
+
+## Capas de élite (v0.2.4)
+
+1. **Diario de confianza** — Qué ocurrió / qué no se afirma / qué queda pendiente.
+2. **Contrato por acción** — Antes de firmar: quién firma, qué se registra, qué no se afirma.
+3. **Modo sombra** — Ver permisos de otro rol sin firmar en su nombre.
+4. **Replay narrado** — Relato breve de la línea de tiempo; silencio si no hay hechos.
+5. **Ritual de memoria** — sugerido → propuesto → aprobado.
+6. **Ticket ético de comercio** — cobro/reparto/impuesto declarados como no reales.
+7. **Por qué existe** — Promesa pública del fundador y lista de cosas que el producto nunca hará.

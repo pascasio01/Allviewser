@@ -26,6 +26,7 @@ export async function addMemory(
     content: string;
     source?: MemoryEntry["source"];
     forceSensitive?: boolean;
+    ritualStatus?: MemoryEntry["ritualStatus"];
   },
   dataRoot?: string,
 ): Promise<MemoryEntry> {
@@ -44,7 +45,10 @@ export async function addMemory(
     sensitive: Boolean(input.forceSensitive) || looksSensitive(input.content),
     createdAt: now,
     updatedAt: now,
-    approved: true,
+    ritualStatus:
+      input.ritualStatus ??
+      (input.source === "agente" ? "sugerido" : "propuesto"),
+    approved: (input.ritualStatus ?? (input.source === "agente" ? "sugerido" : "propuesto")) === "aprobado",
   });
   const all = await listMemories(input.projectId, dataRoot);
   all.push(entry);
@@ -56,7 +60,7 @@ export async function addMemory(
 export async function updateMemory(
   projectId: string,
   id: string,
-  patch: Partial<Pick<MemoryEntry, "content" | "kind" | "approved">>,
+  patch: Partial<Pick<MemoryEntry, "content" | "kind" | "approved" | "ritualStatus">>,
   dataRoot?: string,
 ): Promise<MemoryEntry> {
   const all = await listMemories(projectId, dataRoot);
@@ -65,9 +69,12 @@ export async function updateMemory(
   if (patch.content && looksSensitive(patch.content) && !all[idx].sensitive) {
     throw new Error("La corrección parece sensible; márcala explícitamente como sensible.");
   }
+  const nextRitual = patch.ritualStatus ?? all[idx].ritualStatus ?? (all[idx].approved ? "aprobado" : "propuesto");
   const updated = MemoryEntrySchema.parse({
     ...all[idx],
     ...patch,
+    ritualStatus: nextRitual,
+    approved: patch.approved ?? nextRitual === "aprobado",
     updatedAt: new Date().toISOString(),
   });
   all[idx] = updated;

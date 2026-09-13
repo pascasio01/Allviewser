@@ -11,6 +11,8 @@ export const es = {
     space: "Espacio",
     settings: "Configuración",
     world: "Mundo visual",
+    trust: "Confianza",
+    why: "Por qué existe",
   },
   states: {
     loading: "Un momento…",

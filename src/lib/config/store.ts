@@ -22,6 +22,7 @@ export async function ensureDataLayout(dataRoot?: string): Promise<AppPaths> {
     ensureDir(paths.workspace),
     ensureDir(paths.versions),
     ensureDir(paths.evolution),
+    ensureDir(paths.trust),
   ]);
   try {
     await fs.access(paths.config);

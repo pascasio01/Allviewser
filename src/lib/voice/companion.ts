@@ -87,6 +87,11 @@ export const SPACE_VOICE = {
   updatePresence: "Marcar que estoy aquí",
   observedLabel: "Lo que sí vi",
   inferredLabel: "Lo que infiero (con duda)",
+  shadowTitle: "Modo sombra de rol",
+  contractTitle: "Contrato de esta acción",
+  replayTitle: "Relato del cuidado",
+  playReplay: "Contar el recorrido",
+  honestMissingPrefix: "Falta para avanzar:",
   unavailableLabel: "Lo que no tengo",
 } as const;
 
@@ -130,6 +135,21 @@ export const MODULE_VOICE = {
   modelLocal: "modelo local",
   modelCompatible: "proveedor compatible",
   remoteLocal: "solo en este equipo",
+  trustIntro:
+    "El diario de confianza es el ritual que nadie finge: qué ocurrió, qué no se afirma y qué queda pendiente.",
+  trustEmpty:
+    "Todavía no hay entradas. Cuando cierres un recorrido o apruebes un recuerdo, el rastro aparecerá aquí.",
+  memoryRitualIntro:
+    "Un recuerdo solo se vuelve confiable cuando lo apruebas. Sugerido → propuesto → aprobado.",
+  commerceEthicalTitle: "Ticket ético de la demo",
+  commerceEthicalBody:
+    "Impuestos simulados, propina no cobrada, entrega no real. El módulo existe para practicar flujo — no para fingir un negocio vivo.",
+  shadowModeCue:
+    "Modo sombra: ves el mundo como lo vería otro rol, sin firmar en su nombre.",
+  replayCue:
+    "Replay del cuidado: un relato breve de lo que sí quedó registrado. Si no hay eventos, el silencio es honesto.",
+  honestSilence:
+    "Sin dato no hay relleno. Te digo qué falta (foto, medida, firma) y qué rol puede aportarlo.",
   remoteDeclared: "continuidad remota declarada (no implica sincronización activa)",
 } as const;
 

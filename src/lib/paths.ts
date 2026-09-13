@@ -20,6 +20,7 @@ export function getPaths(dataRoot?: string) {
     workspace: path.join(root, "workspace"),
     versions: path.join(root, "versions"),
     evolution: path.join(root, "evolution"),
+    trust: path.join(root, "trust"),
     brandMarker: path.join(root, `${brand.productCode}.marker`),
   };
 }

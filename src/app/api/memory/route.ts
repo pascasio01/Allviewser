@@ -8,6 +8,7 @@ import {
   updateMemory,
 } from "@/lib/memory/store";
 import { logActivity } from "@/lib/activity/log";
+import { appendTrustEntry } from "@/lib/trust/journal";
 
 export const runtime = "nodejs";
 
@@ -30,6 +31,7 @@ export async function POST(req: Request) {
       content: body.content,
       forceSensitive: body.forceSensitive,
       source: body.source ?? "usuario",
+      ritualStatus: body.ritualStatus,
     });
     await logActivity({
       type: "memory.add",
@@ -38,7 +40,10 @@ export async function POST(req: Request) {
     });
     return NextResponse.json({ memory }, { status: 201 });
   } catch (err) {
-    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 400 });
+    return NextResponse.json(
+      { error: err instanceof Error ? err.message : String(err) },
+      { status: 400 },
+    );
   }
 }
 
@@ -48,7 +53,22 @@ export async function PATCH(req: Request) {
     content: body.content,
     kind: body.kind,
     approved: body.approved,
+    ritualStatus: body.ritualStatus,
   });
+  if (body.ritualStatus === "aprobado" || body.approved === true) {
+    await appendTrustEntry({
+      projectId: body.projectId,
+      title: "Recuerdo aprobado",
+      summary: "Un hecho pasó el ritual de confianza y ya puede usarse como base.",
+      source: "memoria",
+      did: [{ kind: "hecho", text: memory.content.slice(0, 240) }],
+      didNotClaim: [
+        { kind: "limite", text: "La aprobación es local; no implica verificación externa." },
+      ],
+      pending: [],
+      signedByRole: "usuario",
+    });
+  }
   return NextResponse.json({ memory });
 }
 

@@ -19,6 +19,8 @@ const links = [
   { href: "/comercio", key: "commerce" as const },
   { href: "/espacio", key: "space" as const },
   { href: "/mundo", key: "world" as const },
+  { href: "/confianza", key: "trust" as const },
+  { href: "/por-que-existe", key: "why" as const },
   { href: "/configuracion", key: "settings" as const },
 ];
 

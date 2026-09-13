@@ -23,6 +23,7 @@ import {
 } from "@/lib/space/ui-actions";
 import { formatProvenance } from "@/lib/media/provenance";
 import { INTENTIONS, SPACE_VOICE, intentionById, type IntentionId } from "@/lib/voice/companion";
+import { EspacioElitePanel } from "@/components/EspacioElitePanel";
 
 type Tab =
   | "directo"
@@ -270,6 +271,32 @@ export default function EspacioPage() {
           </button>
         )}
       </div>
+
+      <EspacioElitePanel
+        actor={actor}
+        timeline={timeline}
+        onLogTrust={async ({ title, summary }) => {
+          await fetch("/api/trust", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title,
+              summary,
+              source: "espacio",
+              actorId,
+              actorRole: actor?.role,
+              signedByRole: actor?.role,
+              did: [{ kind: "sesion", text: summary }],
+              didNotClaim: [
+                { kind: "limite", text: "No se afirma obra física, sensores en vivo ni diagnóstico clínico." },
+              ],
+              pending: [{ kind: "pendiente", text: "Revisar pasaporte y diario cuando haya nuevos eventos." }],
+            }),
+          });
+          setMessage("Sesión sellada en el diario de confianza.");
+        }}
+      />
+
 
 
       <nav className="tabs" aria-label="Secciones del espacio" style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>

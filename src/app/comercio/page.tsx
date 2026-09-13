@@ -129,6 +129,16 @@ export default function ComercioPage() {
       <header className="panel stack">
         <h1>Comercio inmersivo (demo)</h1>
         <p className="muted">{MODULE_VOICE.commerceIntro}</p>
+        <div className="callout" role="note">
+          <strong>{MODULE_VOICE.commerceEthicalTitle}</strong>
+          <p className="muted" style={{ marginTop: "0.35rem" }}>{MODULE_VOICE.commerceEthicalBody}</p>
+          <ul style={{ margin: "0.5rem 0 0", paddingLeft: "1.1rem" }}>
+            <li>Cobro real: no</li>
+            <li>Reparto real: no</li>
+            <li>Impuesto mostrado: simulado</li>
+            <li>Propina: no se captura dinero</li>
+          </ul>
+        </div>
         <p className="muted">
           Experiencia accesible y ligera. El 3D es opcional y está desactivado. No hay cobros ni
           repartos reales.

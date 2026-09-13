@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.4 — 2026-09-13
+
+### Añadido
+
+- Diario de confianza (`/confianza`, `/api/trust`) con sellado de sesión, límites y export JSON.
+- Contratos visibles por acción y modo sombra de rol en Espacio.
+- Replay narrado del cuidado + silencio honesto cuando no hay eventos.
+- Ritual de memoria sugerido → propuesto → aprobado (solo aprobados son base de confianza).
+- Ticket ético en comercio demo; página `/por-que-existe` con promesa y límites del fundador.
+- Pruebas `tests/trust-elite.test.ts`.
+
+# Changelog
+
 ## 0.2.3 — 2026-09-13
 
 ### Añadido / cambiado
