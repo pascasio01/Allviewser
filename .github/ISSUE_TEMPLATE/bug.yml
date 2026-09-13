@@ -1,0 +1,17 @@
+name: Error
+description: Reportar un fallo reproducible
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      description: Qué hiciste, qué esperabas, qué ocurrió
+    validations:
+      required: true
+  - type: input
+    id: area
+    attributes:
+      label: Área
+      description: núcleo / comercio / espacio / docs

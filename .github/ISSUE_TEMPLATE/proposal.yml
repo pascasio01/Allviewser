@@ -1,0 +1,32 @@
+name: Propuesta
+description: Idea o mejora no confidencial
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Mientras la licencia y los términos de código estén pendientes, las propuestas de ideas son bienvenidas.
+        No envíes material confidencial.
+  - type: dropdown
+    id: role
+    attributes:
+      label: Perspectiva
+      options:
+        - Desarrollo
+        - Diseño
+        - Investigación
+        - Ciencia
+        - Accesibilidad
+        - Seguridad / hacking ético
+        - Uso / detección de problemas
+        - Otra
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto (seguridad, accesibilidad, coste, UX)
