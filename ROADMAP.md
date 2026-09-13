@@ -17,6 +17,23 @@ Módulo aislado en `src/lib/commerce` + UI `/comercio`. Detalle: [docs/COMMERCE.
 - Seguimiento por estados, sustituciones, roles, webhooks firmados
 - Sin cobros ni reparto reales; 3D/AR/cocina en vivo desactivados
 
+## Fase paralela — Espacio / mantenimiento v1 (demo; no bloquea el núcleo)
+
+Módulo aislado en `src/lib/space` + UI `/espacio`. Detalle: [docs/SPACE.md](docs/SPACE.md).
+
+- Edificio ficticio, objetos con ficha, incidencias con roles
+- Línea de tiempo, borradores, decisiones, pasaporte, visita local
+- Asistente contextual sin inventar datos; extensiones con alcance por lugar
+- Sin obras, pagos ni reservas reales; plano 2D (no 3D nativo)
+
+### Mejoras siguientes (por dependencia)
+
+1. Adjuntos binarios con cuotas
+2. Visita multi-dispositivo
+3. Sandbox de ejecución de extensiones
+4. 3D opcional sin romper modo directo
+5. Reutilizar ficha/permisos en reservas/comercio cuando existan
+
 ## v0.2 — Modelos y taller
 
 - Asistente de configuración de modelos locales con comprobación de disponibilidad

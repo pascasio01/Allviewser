@@ -1,27 +1,17 @@
-name: Informe de error
-description: Describe un problema reproducible
+name: Error
+description: Reportar un fallo reproducible
+title: "[bug]: "
 labels: ["bug"]
 body:
-  - type: markdown
-    attributes:
-      value: No incluyas secretos ni datos personales de terceros.
-  - type: textarea
-    id: summary
-    attributes:
-      label: Resumen
-    validations:
-      required: true
   - type: textarea
     id: steps
     attributes:
       label: Pasos para reproducir
+      description: Qué hiciste, qué esperabas, qué ocurrió
     validations:
       required: true
-  - type: textarea
-    id: expected
-    attributes:
-      label: Comportamiento esperado
   - type: input
-    id: version
+    id: area
     attributes:
-      label: Versión / commit
+      label: Área
+      description: núcleo / comercio / espacio / docs

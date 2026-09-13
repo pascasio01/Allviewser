@@ -11,7 +11,7 @@ export const brand = {
     name: "Pascasio Emmanuel Reynoso Reyes",
     role: "Creador, fundador y CEO",
   },
-  version: "0.1.0",
+  version: "0.2.0",
   status: "primera-version-funcional",
 } as const;
 

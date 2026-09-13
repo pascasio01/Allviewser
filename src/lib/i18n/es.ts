@@ -8,6 +8,7 @@ export const es = {
     memory: "Memoria",
     tools: "Herramientas",
     commerce: "Comercio",
+    space: "Espacio",
     settings: "Configuración",
     world: "Mundo visual",
   },

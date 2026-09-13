@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 — 2026-09-13
+
+### Añadido
+
+- Módulo aislado **Espacio / mantenimiento** (`src/lib/space`, UI `/espacio`, API `/api/space`).
+- Edificio demo ficticio con objetos seleccionables, fichas, incidencias por rol, evidencia, línea de tiempo.
+- Borradores «probar antes de cambiar», memoria de decisiones, pasaporte de resultado.
+- Visita compartida local (presencia, comentarios, bloqueos; sin voz/grabación).
+- Asistente contextual que declara «Información no disponible» cuando falta el dato.
+- Contrato e instalación aislada de extensiones por lugar.
+- Modos directo (listas) e inmersivo (plano SVG 2D).
+- Pruebas de aceptación en `tests/space.test.ts` y guía `docs/guides/DEMO_ESPACIO.md`.
+
 ## 0.1.1 — 2026-09-13
 
 ### Añadido

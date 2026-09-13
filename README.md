@@ -20,14 +20,18 @@ Incluye:
 - Exportación y restauración con checksum
 - Mundo visual ligero
 - Módulo aparte de comercio inmersivo en sandbox (`/comercio`)
+- Módulo **Espacio** de mantenimiento demo (`/espacio`): edificio ficticio, fichas, incidencias, línea de tiempo, borradores, pasaporte, visita local, asistente contextual y extensiones aisladas
 
 No incluye aún (y no se promete):
 
 - Conciencia, emociones ni “IA omnisciente”
-- Voz, visión, mapas o 3D activos
+- Voz, visión, mapas o 3D activos (el plano de Espacio es SVG 2D)
 - Continuidad remota desplegada
-- Pagos o reparto reales en el módulo de comercio
+- Pagos, reparto u obras reales
 - Licencia y términos de contribución de código (decisión del titular)
+
+**Creador, fundador y CEO:** Pascasio Emmanuel Reynoso Reyes.  
+**Plataforma entregada:** aplicación web (Next.js) en navegador; no es app nativa.
 
 ## Stack
 
@@ -74,6 +78,8 @@ Sin modelo configurado, la UI muestra instrucciones reales y no simula inteligen
 | Documento | Contenido |
 |-----------|-----------|
 | [ARCHITECTURE](docs/ARCHITECTURE.md) | Diseño del núcleo |
+| [SPACE](docs/SPACE.md) | Módulo de espacio / mantenimiento |
+| [DEMO_ESPACIO](docs/guides/DEMO_ESPACIO.md) | Recorrido de mantenimiento |
 | [COMMERCE](docs/COMMERCE.md) | Módulo de comercio (aislado) |
 | [INSTALL](docs/INSTALL.md) | Instalación detallada |
 | [MODELS](docs/MODELS.md) | Adaptadores de modelo |

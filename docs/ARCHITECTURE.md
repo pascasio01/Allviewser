@@ -19,6 +19,8 @@ Monolito modular (no un archivo gigante, no microservicios innecesarios) con sep
 | Integraciones externas | `src/lib/media`, `src/lib/remote` |
 | Actividad | `src/lib/activity` |
 | Respaldo | `src/lib/backup` |
+| Comercio (aislado) | `src/lib/commerce` |
+| Espacio / mantenimiento (aislado) | `src/lib/space` |
 | Evolución revisable | `src/lib/evolution` |
 | Pruebas | `tests/*` (protegidas frente a autoaprobación del agente) |
 

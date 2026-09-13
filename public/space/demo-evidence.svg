@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="160" viewBox="0 0 240 160">
+  <rect width="240" height="160" fill="#e7f1ef"/>
+  <text x="20" y="40" font-family="sans-serif" font-size="14" fill="#0d3d38">Evidencia DEMO</text>
+  <text x="20" y="70" font-family="sans-serif" font-size="12" fill="#1f6f66">No es una fotografía real de campo</text>
+  <circle cx="180" cy="100" r="28" fill="#4a7c9b" opacity="0.5"/>
+</svg>
