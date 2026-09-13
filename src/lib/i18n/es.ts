@@ -7,6 +7,7 @@ export const es = {
     files: "Archivos",
     memory: "Memoria",
     tools: "Herramientas",
+    commerce: "Comercio",
     settings: "Configuración",
     world: "Mundo visual",
   },

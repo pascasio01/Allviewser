@@ -14,6 +14,7 @@ const links = [
   { href: "/archivos", key: "files" as const },
   { href: "/memoria", key: "memory" as const },
   { href: "/herramientas", key: "tools" as const },
+  { href: "/comercio", key: "commerce" as const },
   { href: "/mundo", key: "world" as const },
   { href: "/configuracion", key: "settings" as const },
 ];

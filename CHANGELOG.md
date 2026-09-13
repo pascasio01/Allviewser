@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.1 — 2026-09-13
+
+### Añadido
+
+- Módulo aislado de **comercio inmersivo y seguimiento visual** (`src/lib/commerce`, UI `/comercio`).
+- Demo con restaurante ficticio, carrito, importes, pedidos sandbox, roles, sustituciones y webhooks firmados.
+- Documentación en `docs/COMMERCE.md` y fase propia en `ROADMAP.md` (no bloquea el núcleo del agente).
+- Pruebas automatizadas del flujo comercial (sin cobros ni reparto reales).
+
 ## 0.1.0 — 2026-09-12
 
 ### Añadido

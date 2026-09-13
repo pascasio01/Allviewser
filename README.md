@@ -22,6 +22,7 @@ No promete conciencia, emociones reales, acceso universal, superioridad sobre to
 | Taller de app de tareas + pruebas de comportamiento | **Implementado** |
 | Exportación / restauración con checksum | **Implementado** |
 | Mundo visual ligero (sin 3D) | **Implementado** |
+| Comercio inmersivo (demo ficticia, sandbox) | **Implementado (módulo aparte)** |
 | Voz, visión, mapas, 3D | **Preparado / inactivo** |
 | Continuidad remota | **Interfaz documentada / no desplegada** |
 | Licencia y términos de contribución de código | **Pendiente del titular** |
@@ -81,6 +82,7 @@ Sin modelo configurado, la conversación muestra **instrucciones reales** y no i
 ## Documentación
 
 - [Arquitectura](docs/ARCHITECTURE.md)
+- [Comercio inmersivo](docs/COMMERCE.md)
 - [Instalación](docs/INSTALL.md)
 - [Modelos](docs/MODELS.md)
 - [Permisos](docs/PERMISSIONS.md)
