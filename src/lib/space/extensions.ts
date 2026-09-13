@@ -1,9 +1,10 @@
 import type { ExtensionManifest } from "./types";
+import { spaceDemoCopy } from "./copy";
 
 export const SAMPLE_CHECKLIST_EXTENSION: ExtensionManifest = {
   id: "ext-checklist-inspeccion",
   name: "Lista de verificación de inspección",
-  author: "Allviewser Demo",
+  author: spaceDemoCopy.extensionAuthor,
   version: "0.1.0",
   license: "UNLICENSED (demo interno)",
   capabilities: ["mostrar_checklist_inspeccion"],

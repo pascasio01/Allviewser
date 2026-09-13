@@ -22,6 +22,9 @@ export default function HomePage() {
         <p className="muted" style={{ marginTop: "0.75rem" }}>
           {brand.founder.role}: {brand.founder.name}
         </p>
+        <p className="muted" style={{ marginTop: "0.5rem", fontSize: "0.85rem", maxWidth: "42rem" }}>
+          {brand.provisionalNotice}
+        </p>
       </header>
 
       <StateBlock loading={loading} error={error} offline={offline} onRetry={() => void refresh()}>

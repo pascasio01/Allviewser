@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.1 — 2026-09-13
+
+### Añadido / cambiado
+
+- Configuración de marca centralizada (`src/lib/brand.ts`): nombre público, logo, fundador, aviso provisional.
+- Separación entre identidad pública, `internalProductId` estable y `repositoryName` (Allviewser, sin renombrar remotos).
+- Investigación preliminar de nombres en `docs/brand-review.md` (no es dictamen legal).
+- Logo provisional en `/brand/logo.svg`.
+
 ## 0.2.0 — 2026-09-13
 
 ### Añadido

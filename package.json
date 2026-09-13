@@ -1,8 +1,8 @@
 {
   "name": "companero-digital",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
-  "description": "Allviewser / Compañero Digital — Proyecto Independiente. App web local-first.",
+  "description": "Proyecto independiente (repo provisional Allviewser). Marca pública en src/lib/brand.ts — sin registro afirmado.",
   "author": {
     "name": "Pascasio Emmanuel Reynoso Reyes",
     "url": "https://github.com/pascasio01"

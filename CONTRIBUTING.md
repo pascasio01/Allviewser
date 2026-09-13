@@ -1,15 +1,19 @@
 # Guía de contribución
 
-Gracias por tu interés en **Compañero Digital — Proyecto Independiente**.
+Gracias por tu interés en este proyecto independiente.
 
 **Creador, fundador y CEO:** Pascasio Emmanuel Reynoso Reyes.
 
+La marca pública provisional se configura en `src/lib/brand.ts`. El nombre del repositorio GitHub es provisional y distinto de un registro de marca. Ver `docs/brand-review.md`.
+
 ## Estado de las contribuciones
 
-Hasta que el titular publique **licencia** y **términos de contribución de código**:
+Hasta que el titular publique **licencia del código** y **términos de contribución**:
 
 - **Sí:** propuestas no confidenciales (ideas, diseños, informes de errores, mejoras de accesibilidad, hallazgos de seguridad responsable).
 - **No todavía:** pull requests de código destinados a fusionarse como contribución aceptada bajo una licencia indefinida.
+
+Poner el nombre del fundador en créditos **no** sustituye la licencia ni “protege” el nombre comercial frente a terceros.
 
 Puedes abrir un Issue con la plantilla adecuada. No envíes secretos ni datos personales de terceros.
 

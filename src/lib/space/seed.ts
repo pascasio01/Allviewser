@@ -1,4 +1,5 @@
 import type { Actor, Place, SharedVisit, SpaceObject, SpaceState, TimelineEvent } from "./types";
+import { spaceDemoCopy } from "./copy";
 
 export const DEMO_PLACE_ID = "place-edificio-demo-allviewser";
 export const DEMO_PIPE_ID = "obj-tuberia-planta1-aseo";
@@ -21,8 +22,8 @@ export const demoActors: Actor[] = [
 
 export const demoPlace: Place = {
   id: DEMO_PLACE_ID,
-  name: "Edificio Demo Allviewser",
-  slug: "edificio-demo-allviewser",
+  name: spaceDemoCopy.placeName,
+  slug: spaceDemoCopy.placeSlug,
   fictional: true,
   fictionalBanner: "Espacio ficticio de demostración. Ningún dato corresponde a un inmueble real.",
   description:
@@ -58,7 +59,7 @@ export const demoObjects: SpaceObject[] = [
     floor: "1",
     x: 72,
     y: 28,
-    source: "Inventario semilla Allviewser (demo)",
+    source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
     documents: [
       {
@@ -99,7 +100,7 @@ export const demoObjects: SpaceObject[] = [
     floor: "S",
     x: 22,
     y: 78,
-    source: "Inventario semilla Allviewser (demo)",
+    source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
     documents: [
       {
@@ -128,7 +129,7 @@ export const demoObjects: SpaceObject[] = [
     floor: "0",
     x: 18,
     y: 42,
-    source: "Inventario semilla Allviewser (demo)",
+    source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
     documents: [],
     history: hist("obj-panel-electrico", "Cuadro eléctrico"),
@@ -148,7 +149,7 @@ export const demoObjects: SpaceObject[] = [
     floor: "0",
     x: 50,
     y: 88,
-    source: "Inventario semilla Allviewser (demo)",
+    source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
     documents: [],
     history: hist("obj-puerta-acceso", "Puerta de acceso"),
@@ -169,7 +170,7 @@ export const demoObjects: SpaceObject[] = [
     floor: "1",
     x: 40,
     y: 30,
-    source: "Inventario semilla Allviewser (demo)",
+    source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
     documents: [],
     history: hist("obj-sala-reuniones", "Sala de reuniones A"),
@@ -189,7 +190,7 @@ export const demoObjects: SpaceObject[] = [
     floor: "0",
     x: 48,
     y: 70,
-    source: "Inventario semilla Allviewser (demo)",
+    source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
     documents: [],
     history: hist("obj-mesa-recepcion", "Mesa de recepción"),
@@ -227,7 +228,7 @@ function seedTimeline(): TimelineEvent[] {
       placeId: DEMO_PLACE_ID,
       kind: "semilla",
       title: "Edificio demo cargado",
-      detail: "Semilla inicial del Edificio Demo Allviewser.",
+      detail: spaceDemoCopy.seedTimelineDetail,
       actorId: "system",
       actorName: "Sistema",
       dates: { uploadedAt: CREATED, eventAt: CREATED },

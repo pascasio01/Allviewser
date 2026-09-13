@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { getPaths, type AppPaths } from "../paths";
+import { brand } from "../brand";
 import { defaultConfig, AppConfigSchema, type AppConfig } from "./types";
 
 async function ensureDir(dir: string) {
@@ -29,7 +30,7 @@ export async function ensureDataLayout(dataRoot?: string): Promise<AppPaths> {
   }
   await fs.writeFile(
     paths.brandMarker,
-    JSON.stringify({ product: "companero-digital", createdAt: new Date().toISOString() }),
+    JSON.stringify({ product: brand.internalProductId, createdAt: new Date().toISOString() }),
     "utf8",
   );
   return paths;

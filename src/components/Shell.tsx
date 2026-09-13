@@ -28,8 +28,17 @@ export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className={`app-shell ${config?.reducedMotion ? "reduce-motion" : ""}`}>
       <aside className="sidebar" aria-label="Navegación principal">
-        <p className="brand-mark">{brand.shortName}</p>
-        <p className="brand-sub">{brand.provisionalName}</p>
+        <div className="brand-block" style={{ display: "flex", gap: "0.65rem", alignItems: "center", marginBottom: "0.35rem" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={brand.logoPath} alt="" width={40} height={40} style={{ borderRadius: 10 }} />
+          <div>
+            <p className="brand-mark" style={{ margin: 0 }}>{brand.shortName}</p>
+            <p className="brand-sub" style={{ margin: 0 }}>{brand.publicName}</p>
+          </div>
+        </div>
+        <p className="brand-sub" style={{ fontSize: "0.7rem", opacity: 0.85, marginBottom: "1rem" }}>
+          {brand.provisionalNotice}
+        </p>
         <nav className="nav-list">
           {links.map((l) => (
             <Link

@@ -2,7 +2,7 @@
 
 ## Reportes
 
-Si descubres una vulnerabilidad en **Compañero Digital / Allviewser**, por favor **no** abras un Issue público con detalles explotables.
+Si descubres una vulnerabilidad en este proyecto (repositorio provisional Allviewser / aplicación configurada en `src/lib/brand.ts`), por favor **no** abras un Issue público con detalles explotables.
 
 Envía un reporte privado al titular del repositorio (`pascasio01` en GitHub) describiendo:
 

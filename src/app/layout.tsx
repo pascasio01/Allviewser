@@ -19,7 +19,7 @@ const body = Figtree({
 
 export const metadata: Metadata = {
   title: brand.shortName,
-  description: brand.tagline,
+  description: brand.description,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

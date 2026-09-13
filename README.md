@@ -1,9 +1,11 @@
 # Allviewser
 
-**Compañero Digital** — Proyecto Independiente  
-**Autor:** Pascasio Emmanuel Reynoso Reyes (@pascasio01)
+> Repositorio GitHub provisional. La marca pública de la aplicación se configura en `src/lib/brand.ts` y **no** está registrada en esta entrega. Ver [docs/brand-review.md](docs/brand-review.md).
 
-Nombre comercial provisional (pendiente de verificación). La marca vive en `src/lib/brand.ts`.
+**Compañero Digital** — Proyecto Independiente (nombre público provisional)  
+**Creador, fundador y CEO:** Pascasio Emmanuel Reynoso Reyes (@pascasio01)
+
+Nombre comercial e identidad visual **provisionales** (sin símbolo ®). Candidato alternativo en estudio: Brainluk. Ningún nombre está confirmado como legalmente disponible.
 
 ## Descripción
 
@@ -77,6 +79,7 @@ Sin modelo configurado, la UI muestra instrucciones reales y no simula inteligen
 
 | Documento | Contenido |
 |-----------|-----------|
+| [BRAND_REVIEW](docs/brand-review.md) | Investigación preliminar de nombres (no es dictamen legal) |
 | [ARCHITECTURE](docs/ARCHITECTURE.md) | Diseño del núcleo |
 | [SPACE](docs/SPACE.md) | Módulo de espacio / mantenimiento |
 | [DEMO_ESPACIO](docs/guides/DEMO_ESPACIO.md) | Recorrido de mantenimiento |
