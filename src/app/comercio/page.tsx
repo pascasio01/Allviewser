@@ -14,6 +14,7 @@ import {
   ORDER_STATUS_LABELS,
   formatMoney,
 } from "@/lib/commerce/types";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 type CartPreview = {
   cart: {
@@ -72,7 +73,7 @@ export default function ComercioPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [phase, setPhase] = useState("…");
+  const [, setPhase] = useState<string>("…");
 
   const selectedOrder = useMemo(
     () => orders.find((o) => o.id === selectedOrderId) ?? null,
@@ -126,8 +127,8 @@ export default function ComercioPage() {
   return (
     <div className="stack">
       <header className="panel stack">
-        <p className="badge">Módulo aparte del núcleo del agente · fase {phase}</p>
         <h1>Comercio inmersivo (demo)</h1>
+        <p className="muted">{MODULE_VOICE.commerceIntro}</p>
         <p className="muted">
           Experiencia accesible y ligera. El 3D es opcional y está desactivado. No hay cobros ni
           repartos reales.
@@ -175,7 +176,7 @@ export default function ComercioPage() {
             {error}
           </div>
         )}
-        {loading && <div className="loading">Cargando…</div>}
+        {loading && <div className="loading">Un momento…</div>}
       </header>
 
       {tab === "cliente" && preview && (
@@ -252,7 +253,7 @@ export default function ComercioPage() {
 
           <div className="panel stack">
             <h2>Carrito</h2>
-            {!preview.cart.items.length && <div className="empty">Carrito vacío.</div>}
+            {!preview.cart.items.length && <div className="empty">{MODULE_VOICE.commerceCartEmpty}</div>}
             <ul className="stack">
               {preview.cart.items.map((item) => (
                 <li key={item.id} className="row">
@@ -356,7 +357,7 @@ export default function ComercioPage() {
             ))}
           </ul>
           <h3>Pedidos</h3>
-          {!orders.length && <div className="empty">Sin pedidos.</div>}
+          {!orders.length && <div className="empty">{MODULE_VOICE.commerceOrdersEmpty}</div>}
           {orders.map((o) => (
             <article key={o.id} className="panel stack">
               <div className="row">
@@ -440,9 +441,7 @@ export default function ComercioPage() {
             <>
               {selectedOrder.connectionLost && (
                 <div className="callout" role="status">
-                  Conexión perdida. Último estado conocido:{" "}
-                  {new Date(selectedOrder.lastKnownStatusAt).toLocaleString("es")}.
-                </div>
+                  {MODULE_VOICE.commerceLost}</div>
               )}
               <div className="status-track">
                 {STATUS_FLOW.map((s) => {

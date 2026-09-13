@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAppState } from "@/components/AppProvider";
 import type { AppConfig } from "@/lib/config/types";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 export default function SettingsPage() {
   const { config, saveConfig, refresh } = useAppState();
@@ -23,7 +24,7 @@ export default function SettingsPage() {
     })();
   }, []);
 
-  if (!draft) return <div className="loading">Cargando configuración…</div>;
+  if (!draft) return <div className="loading">{MODULE_VOICE.settingsLoading}</div>;
 
   async function save() {
     if (!draft) return;
@@ -58,6 +59,7 @@ export default function SettingsPage() {
   return (
     <div className="stack">
       <h1>Configuración</h1>
+      <p className="muted">{MODULE_VOICE.settingsIntro}</p>
       {message && <div className="panel">{message}</div>}
       <section className="panel stack">
         <h2>Modelo</h2>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAppState } from "@/components/AppProvider";
 import { StateBlock } from "@/components/StateBlock";
 import type { Conversation } from "@/lib/conversations/types";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 export default function ChatPage() {
   const { projectId, refresh } = useAppState();
@@ -48,7 +49,7 @@ export default function ChatPage() {
         }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "Error de chat");
+      if (!res.ok) throw new Error(json.error ?? "No pude completar el mensaje");
       setConversation(json.conversation);
       setText("");
     } catch (err) {
@@ -69,20 +70,20 @@ export default function ChatPage() {
   }
 
   if (!projectId) {
-    return <div className="empty">Selecciona o crea un proyecto para conversar.</div>;
+    return <div className="empty">{MODULE_VOICE.chatNoProject}</div>;
   }
 
   return (
     <div className="stack">
       <h1>Conversación</h1>
       <p className="muted">
-        Las respuestas solo proceden del proveedor configurado. Si no hay modelo, verás instrucciones reales.
+        {MODULE_VOICE.chatIntro}
       </p>
       <StateBlock error={error} onRetry={() => void refresh()}>
         <section className="panel">
           <div className="chat-log" aria-live="polite">
             {!conversation?.messages?.length && (
-              <div className="empty">Aún no hay mensajes en esta conversación.</div>
+              <div className="empty">{MODULE_VOICE.chatEmpty}</div>
             )}
             {conversation?.messages.map((m) => (
               <div key={m.id} className={`bubble ${m.role === "user" ? "user" : "assistant"}`}>
@@ -91,7 +92,7 @@ export default function ChatPage() {
                 {m.content}
                 {m.meta?.error && (
                   <p className="muted" style={{ marginTop: "0.5rem" }}>
-                    Estado: {m.meta.cancelled ? "cancelado" : "error de proveedor"}
+                    Estado: {m.meta.cancelled ? "cancelado" : "el proveedor no respondió"}
                   </p>
                 )}
               </div>
@@ -104,7 +105,7 @@ export default function ChatPage() {
               className="textarea"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              placeholder="Escribe un mensaje…"
+              placeholder="{MODULE_VOICE.chatEmpty}"
             />
             <div className="row">
               <button type="button" className="btn" disabled={loading || !text.trim()} onClick={() => void send()}>

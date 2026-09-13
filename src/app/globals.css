@@ -491,3 +491,34 @@ h2,
     transition: none;
   }
 }
+
+
+/* Voz psicológica / presencia del compañero */
+.companion-presence {
+  border-left: 3px solid var(--teal);
+}
+
+.intention-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.intention-card {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.intention-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
+
+.intention-card p {
+  margin: 0.35rem 0;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}

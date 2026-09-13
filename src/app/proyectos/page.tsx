@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useAppState } from "@/components/AppProvider";
 import { StateBlock } from "@/components/StateBlock";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 export default function ProjectsPage() {
   const { projects, loading, error, offline, refresh, setProjectId, projectId } = useAppState();
@@ -45,7 +46,7 @@ export default function ProjectsPage() {
   return (
     <div className="stack">
       <h1>Proyectos</h1>
-      <p className="muted">Datos y conversaciones se separan por proyecto.</p>
+      <p className="muted">{MODULE_VOICE.projectsIntro}</p>
       <StateBlock loading={loading} error={error ?? localError} offline={offline} onRetry={() => void refresh()}>
         <section className="panel stack">
           <h2>Crear proyecto</h2>
@@ -62,7 +63,7 @@ export default function ProjectsPage() {
         </section>
         <section className="panel">
           <h2>Lista</h2>
-          {!projects.length && <div className="empty">No hay proyectos todavía.</div>}
+          {!projects.length && <div className="empty">{MODULE_VOICE.projectsEmpty}</div>}
           <table className="table">
             <thead>
               <tr>

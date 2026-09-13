@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAppState } from "@/components/AppProvider";
 import type { MemoryEntry, MemoryKind } from "@/lib/memory/types";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 export default function MemoryPage() {
   const { projectId } = useAppState();
@@ -60,13 +61,13 @@ export default function MemoryPage() {
     URL.revokeObjectURL(url);
   }
 
-  if (!projectId) return <div className="empty">Selecciona un proyecto.</div>;
+  if (!projectId) return <div className="empty">{MODULE_VOICE.projectGate}</div>;
 
   return (
     <div className="stack">
       <h1>Memoria</h1>
       <p className="muted">
-        Hechos, decisiones y propuestas. No se guarda información sensible automáticamente.
+        {MODULE_VOICE.memoryIntro}
       </p>
       {error && <div className="error">{error}</div>}
       <section className="panel stack">
@@ -90,7 +91,7 @@ export default function MemoryPage() {
         </div>
       </section>
       <section className="panel">
-        {!memories.length && <div className="empty">Biblioteca vacía.</div>}
+        {!memories.length && <div className="empty">{MODULE_VOICE.memoryEmpty}</div>}
         <ul className="stack">
           {memories.map((m) => (
             <li key={m.id} className="panel" style={{ boxShadow: "none" }}>

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useAppState } from "@/components/AppProvider";
 import { StateBlock } from "@/components/StateBlock";
 import type { Task } from "@/lib/tasks/types";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 export default function TasksPage() {
   const { projectId } = useAppState();
@@ -92,13 +93,13 @@ export default function TasksPage() {
     }
   }
 
-  if (!projectId) return <div className="empty">Selecciona un proyecto.</div>;
+  if (!projectId) return <div className="empty">{MODULE_VOICE.projectGate}</div>;
 
   return (
     <div className="stack">
       <h1>Tareas y taller</h1>
       <p className="muted">
-        Flujo demostrable: requisitos → archivos aislados → vista previa → corrección → pruebas → entrega.
+        {MODULE_VOICE.tasksIntro}
       </p>
       <StateBlock error={error}>
         <section className="panel stack">
@@ -119,7 +120,7 @@ export default function TasksPage() {
         </section>
         <section className="panel">
           <h2>Historial</h2>
-          {!tasks.length && <div className="empty">Sin tareas aún.</div>}
+          {!tasks.length && <div className="empty">{MODULE_VOICE.tasksEmpty}</div>}
           <table className="table">
             <thead>
               <tr>

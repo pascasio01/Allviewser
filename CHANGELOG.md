@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.3 — 2026-09-13
+
+### Añadido / cambiado
+
+- Voz psicológica del compañero (`src/lib/voice/companion.ts`): contrato emocional, cuatro intenciones, SPACE_VOICE y MODULE_VOICE.
+- Inicio rediseñado alrededor de presencia honesta + grid de intenciones.
+- Espacio: rail de intenciones con necesidad/límite, copy calmado en carga, vacíos, asistente y acciones.
+- Conversación, proyectos, memoria, archivos, tareas, herramientas, mundo, comercio y configuración usan la misma voz (puertas de proyecto, vacíos, límites).
+- Shell con susurro del contrato; estados vacíos/error/offline calmados; `docs/PRODUCT_VOICE.md`.
+- Pruebas de coherencia de voz (`tests/companion-voice.test.ts`).
+
 ## 0.2.2 — 2026-09-13
 
 ### Añadido / cambiado

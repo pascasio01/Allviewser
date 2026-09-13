@@ -1,6 +1,6 @@
 {
   "name": "companero-digital",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "description": "Proyecto independiente (repo provisional Allviewser). Marca pública en src/lib/brand.ts — sin registro afirmado.",
   "author": {

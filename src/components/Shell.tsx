@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { brand } from "@/lib/brand";
+import { COMPANION_CONTRACT } from "@/lib/voice/companion";
 import { t } from "@/lib/i18n/es";
 import { useAppState } from "./AppProvider";
 
@@ -54,6 +55,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <p className="brand-sub" style={{ fontSize: "0.7rem", opacity: 0.85, marginBottom: "1rem" }}>
           {brand.provisionalNotice}
         </p>
+        <p className="brand-sub" style={{ fontSize: "0.72rem", opacity: 0.9, marginBottom: "0.85rem", lineHeight: 1.35 }}>
+          {COMPANION_CONTRACT.calmCue}
+        </p>
         <nav id="primary-nav" className={`nav-list ${navOpen ? "open" : ""}`}>
           {links.map((l) => (
             <Link
@@ -68,7 +72,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </nav>
         <div style={{ marginTop: "1.5rem" }}>
           <label htmlFor="project-select" className="brand-sub">
-            Proyecto activo
+            Proyecto en el que te acompaño
           </label>
           <select
             id="project-select"
@@ -77,7 +81,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             value={projectId ?? ""}
             onChange={(e) => setProjectId(e.target.value || null)}
           >
-            <option value="">— seleccionar —</option>
+            <option value="">elige un proyecto para empezar</option>
             {projects
               .filter((p) => p.status === "activo")
               .map((p) => (

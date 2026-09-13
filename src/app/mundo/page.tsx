@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAppState } from "@/components/AppProvider";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 const rooms = [
   { id: "control", title: "Centro de control", href: "/", action: "Resumen y acceso rápido" },
@@ -28,7 +29,7 @@ export default function WorldPage() {
     <div className="stack">
       <h1>Mundo visual</h1>
       <p className="muted">
-        Espacio ligero conectado a funciones reales. Sin 3D en v0.1 para preservar accesibilidad y rendimiento.
+        {MODULE_VOICE.worldIntro}
         Modo directo: {config?.directMode ? "activado" : "desactivado"}.
       </p>
       <div className="world-grid">
@@ -41,7 +42,7 @@ export default function WorldPage() {
       </div>
       <section className="panel" id="actividad">
         <h2>Sala de actividad</h2>
-        {!events.length && <div className="empty">Sin actividad registrada.</div>}
+        {!events.length && <div className="empty">{MODULE_VOICE.worldEmpty}</div>}
         <ul>
           {events.map((e) => (
             <li key={e.id}>

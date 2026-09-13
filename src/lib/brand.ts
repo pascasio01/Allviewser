@@ -26,7 +26,8 @@ export const brand = {
   shortName: "Compañero Digital",
   description:
     "Aplicación web local-first: conversación, proyectos, memoria, tareas, taller, comercio demo y espacio de mantenimiento.",
-  tagline: "Un compañero con herramientas, memoria y taller — sin promesas imposibles.",
+  tagline:
+    "Un compañero que te guía con honestidad: explora, crea, resuelve y revisa — sin fingir lo que no hay.",
   internalProductId: INTERNAL_PRODUCT_ID,
   /** Alias legado (paths, marker). */
   productCode: INTERNAL_PRODUCT_ID,
@@ -41,7 +42,7 @@ export const brand = {
     role: "Creador, fundador y CEO",
     github: "pascasio01",
   },
-  version: "0.2.2",
+  version: "0.2.3",
   status: "primera-version-funcional" as const,
   alternateCandidates: ["Brainluk"] as const,
 };

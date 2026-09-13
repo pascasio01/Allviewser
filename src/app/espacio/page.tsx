@@ -22,6 +22,7 @@ import {
   nextGuidedStep,
 } from "@/lib/space/ui-actions";
 import { formatProvenance } from "@/lib/media/provenance";
+import { INTENTIONS, SPACE_VOICE, intentionById, type IntentionId } from "@/lib/voice/companion";
 
 type Tab =
   | "directo"
@@ -39,7 +40,7 @@ async function apiGet(action: string, params: Record<string, string> = {}) {
   const qs = new URLSearchParams({ action, ...params });
   const res = await fetch(`/api/space?${qs}`);
   const json = await res.json();
-  if (!res.ok) throw new Error(json.error ?? "Error de API");
+  if (!res.ok) throw new Error(json.error ?? "No pude completar esa acción. Reintenta con calma.");
   return json;
 }
 
@@ -50,7 +51,7 @@ async function apiPost(body: Record<string, unknown>) {
     body: JSON.stringify(body),
   });
   const json = await res.json();
-  if (!res.ok) throw new Error(json.error ?? "Error de API");
+  if (!res.ok) throw new Error(json.error ?? "No pude completar esa acción. Reintenta con calma.");
   return json;
 }
 
@@ -136,19 +137,22 @@ export default function EspacioPage() {
     }
   }
 
-  if (loading) return <div className="stack"><p className="muted">Cargando espacio…</p></div>;
+  if (loading) return <div className="stack"><p className="muted">{SPACE_VOICE.loading}</p></div>;
   if (!state || !place) {
-    return <div className="stack"><p className="error">{error ?? "Sin estado"}</p></div>;
+    return <div className="stack"><p className="error">{error ?? SPACE_VOICE.noState}</p></div>;
   }
 
   return (
     <div className="stack espacio">
       <header className="stack" style={{ gap: "0.5rem" }}>
         <h1>Espacio · mantenimiento</h1>
+        <p className="muted">{SPACE_VOICE.placeIntro}</p>
         <p className="muted">{place.description}</p>
         <div className="banner-warn" role="status">
           <strong>FICTICIO:</strong> {place.fictionalBanner}
         </div>
+        <p className="muted">{SPACE_VOICE.roleCue}</p>
+        <p className="muted">{SPACE_VOICE.provenanceCue}</p>
         <p className="muted">
           Plataforma: aplicación web en navegador (no es app nativa). Modo 3D real desactivado;
           el plano inmersivo es 2D SVG.
@@ -180,7 +184,7 @@ export default function EspacioPage() {
             })
           }
         >
-          Ejecutar recorrido completo
+          {SPACE_VOICE.runFullFlow}
         </button>
         <button
           type="button"
@@ -191,7 +195,7 @@ export default function EspacioPage() {
             })
           }
         >
-          Reiniciar demo
+          {SPACE_VOICE.resetDemo}
         </button>
       </div>
 
@@ -203,24 +207,52 @@ export default function EspacioPage() {
         <span className="muted">{online ? "Conexión local activa" : "Sin conexión de red (datos locales)"}</span>
       </div>
       <div className="mode-rail" role="navigation" aria-label="Intenciones">
-        {[
-          { id: "explorar", label: "Explorar", tab: "directo" as Tab },
-          { id: "crear", label: "Crear", tab: "borradores" as Tab },
-          { id: "resolver", label: "Resolver", tab: "incidencias" as Tab },
-          { id: "revisar", label: "Revisar", tab: "timeline" as Tab },
-        ].map((m) => (
-          <button
-            key={m.id}
-            type="button"
-            className={`btn secondary mode-chip ${tab === m.tab ? "active" : ""}`}
-            onClick={() => setTab(m.tab)}
-          >
-            {m.label}
-          </button>
-        ))}
+        {INTENTIONS.map((intention) => {
+          const tabMap: Record<IntentionId, Tab> = {
+            explorar: "directo",
+            crear: "borradores",
+            resolver: "incidencias",
+            revisar: "timeline",
+          };
+          const target = tabMap[intention.id];
+          const active = tab === target;
+          return (
+            <button
+              key={intention.id}
+              type="button"
+              className={`btn secondary mode-chip ${active ? "active" : ""}`}
+              onClick={() => setTab(target)}
+              title={`${intention.need} · ${intention.boundary}`}
+              aria-pressed={active}
+            >
+              {intention.label}
+            </button>
+          );
+        })}
+        <p className="muted intention-whisper" style={{ width: "100%", margin: "0.35rem 0 0", fontSize: "0.85rem" }}>
+          {intentionById(
+            (tab === "directo" || tab === "inmersivo"
+              ? "explorar"
+              : tab === "borradores"
+                ? "crear"
+                : tab === "incidencias"
+                  ? "resolver"
+                  : "revisar") as IntentionId,
+          ).need}{" "}
+          <span aria-hidden>·</span>{" "}
+          {intentionById(
+            (tab === "directo" || tab === "inmersivo"
+              ? "explorar"
+              : tab === "borradores"
+                ? "crear"
+                : tab === "incidencias"
+                  ? "resolver"
+                  : "revisar") as IntentionId,
+          ).boundary}
+        </p>
       </div>
       <div className="guide-banner panel" role="status">
-        <strong>Siguiente paso:</strong> {guided.label}
+        <strong>Te acompaño en esto:</strong> {guided.label}
         {!guided.availability.enabled && guided.availability.reason && (
           <p className="muted" style={{ margin: "0.35rem 0 0" }}>{guided.availability.reason}</p>
         )}
@@ -234,7 +266,7 @@ export default function EspacioPage() {
               setTab(guided.tabHint as Tab);
             }}
           >
-            Cambiar al actor sugerido
+            Ponerme en el rol que hace falta
           </button>
         )}
       </div>
@@ -402,7 +434,7 @@ export default function EspacioPage() {
       {tab === "incidencias" && (
         <section className="panel stack">
           <h2>Incidencias</h2>
-          {!incidents.length && <p className="muted">Sin incidencias. Crea una desde la ficha o ejecuta el recorrido.</p>}
+          {!incidents.length && <p className="muted">{SPACE_VOICE.emptyIncidents}</p>}
           {incidents.map((inc) => (
             <article key={inc.id} className="panel">
               <h3>{inc.title}</h3>
@@ -528,7 +560,7 @@ export default function EspacioPage() {
             </article>
           ))}
           {selectedId && !selectedIncidents.length && (
-            <p className="muted">Sin incidencias para el objeto seleccionado.</p>
+            <p className="muted">{SPACE_VOICE.emptyObjectIncidents}</p>
           )}
         </section>
       )}
@@ -681,7 +713,7 @@ export default function EspacioPage() {
               )
             }
           >
-            Actualizar presencia
+            {SPACE_VOICE.updatePresence}
           </button>
           <button
             type="button"
@@ -739,8 +771,8 @@ export default function EspacioPage() {
 
       {tab === "asistente" && (
         <section className="panel stack">
-          <h2>Asistente contextual</h2>
-          <p className="muted">No inventa medidas, precios ni diagnósticos.</p>
+          <h2>{SPACE_VOICE.assistantTitle}</h2>
+          <p className="muted">{SPACE_VOICE.assistantCue}</p>
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
             <input
               className="input"
@@ -769,11 +801,11 @@ export default function EspacioPage() {
           </div>
           {reply && (
             <article className="panel">
-              <p><strong>Modo:</strong> {reply.mode}</p>
+              <p><strong>Modo de respuesta:</strong> {reply.mode}</p>
               <p>{reply.text}</p>
-              <p><strong>Observado:</strong> {reply.observed.join(" · ") || "—"}</p>
-              <p><strong>Inferido:</strong> {reply.inferred.join(" · ") || "—"}</p>
-              <p><strong>No disponible:</strong> {reply.unavailable.join(" · ") || "—"}</p>
+              <p><strong>{SPACE_VOICE.observedLabel}:</strong> {reply.observed.join(" · ") || "—"}</p>
+              <p><strong>{SPACE_VOICE.inferredLabel}:</strong> {reply.inferred.join(" · ") || "—"}</p>
+              <p><strong>{SPACE_VOICE.unavailableLabel}:</strong> {reply.unavailable.join(" · ") || "—"}</p>
             </article>
           )}
         </section>
@@ -831,7 +863,7 @@ export default function EspacioPage() {
         <section className="panel stack">
           <h2>Pasaporte de resultados</h2>
           {!state.passports.length && (
-            <p className="muted">Aún no hay pasaportes. Completa el recorrido de mantenimiento.</p>
+            <p className="muted">{SPACE_VOICE.emptyPassports}</p>
           )}
           {state.passports.map((p) => (
             <article key={p.id} className="panel">

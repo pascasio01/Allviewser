@@ -1,5 +1,7 @@
 "use client";
 
+import { t } from "@/lib/i18n/es";
+
 export function StateBlock({
   loading,
   error,
@@ -15,14 +17,15 @@ export function StateBlock({
   onRetry?: () => void;
   children: React.ReactNode;
 }) {
-  if (loading) return <div className="loading">Cargando…</div>;
+  const messages = t();
+  if (loading) return <div className="loading">{messages.states.loading}</div>;
   if (offline)
     return (
       <div className="error" role="alert">
-        Sin conexión a la API local.{" "}
+        {messages.states.offline}{" "}
         {onRetry && (
           <button type="button" className="btn secondary" onClick={onRetry}>
-            Reintentar
+            {messages.states.recovery}
           </button>
         )}
       </div>
@@ -33,11 +36,11 @@ export function StateBlock({
         {error}{" "}
         {onRetry && (
           <button type="button" className="btn secondary" onClick={onRetry}>
-            Reintentar
+            {messages.states.recovery}
           </button>
         )}
       </div>
     );
-  if (empty) return <div className="empty">No hay elementos todavía.</div>;
+  if (empty) return <div className="empty">{messages.states.empty}</div>;
   return <>{children}</>;
 }

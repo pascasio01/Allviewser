@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { ToolManifest } from "@/lib/tools/types";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 export default function ToolsPage() {
   const [tools, setTools] = useState<ToolManifest[]>([]);
@@ -17,7 +18,7 @@ export default function ToolsPage() {
   return (
     <div className="stack">
       <h1>Herramientas</h1>
-      <p className="muted">Cada herramienta declara permisos, red, costes, cancelación y reversibilidad.</p>
+      <p className="muted">{MODULE_VOICE.toolsIntro}</p>
       <div className="stack">
         {tools.map((t) => (
           <article key={t.id} className="panel">

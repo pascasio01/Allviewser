@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useAppState } from "@/components/AppProvider";
+import { MODULE_VOICE } from "@/lib/voice/companion";
 
 export default function FilesPage() {
   const { projectId } = useAppState();
@@ -56,12 +57,12 @@ export default function FilesPage() {
     else await list();
   }
 
-  if (!projectId) return <div className="empty">Selecciona un proyecto.</div>;
+  if (!projectId) return <div className="empty">{MODULE_VOICE.projectGate}</div>;
 
   return (
     <div className="stack">
       <h1>Archivos</h1>
-      <p className="muted">Solo dentro del espacio autorizado del proyecto. Las rutas con .. se rechazan.</p>
+      <p className="muted">{MODULE_VOICE.filesIntro}</p>
       {error && <div className="error">{error}</div>}
       <section className="panel stack">
         <div className="row">
@@ -78,7 +79,7 @@ export default function FilesPage() {
               </button>
             </li>
           ))}
-          {!files.length && <li className="muted">Sin archivos.</li>}
+          {!files.length && <li className="muted">{MODULE_VOICE.filesEmpty}</li>}
         </ul>
         {selected && (
           <div>
