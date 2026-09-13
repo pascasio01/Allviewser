@@ -14,15 +14,15 @@ export {
   demoPlace,
 } from "./seed";
 export {
+  canTransition,
+  roleCanSetStatus,
+  canCreateIncident,
   canAssign,
   canAttachEvidence,
   canConfirmDraft,
-  canCreateIncident,
-  canEditVisit,
   canManageExtensions,
-  canTransition,
-  roleCanEdit,
-  roleCanSetStatus,
+  canEditVisit,
+  roleCanEdit
 } from "./roles";
 export { loadSpaceState, resetSpaceDemo, saveSpaceState, spaceDir } from "./store";
 export { SAMPLE_CHECKLIST_EXTENSION } from "./extensions";
@@ -58,3 +58,14 @@ export {
   updateDraftObject,
   upsertPresence,
 } from "./service";
+
+export {
+  availabilityCreateIncident,
+  availabilityAssign,
+  availabilityAttach,
+  availabilityTransition,
+  availabilityConfirmDraft,
+  availabilityExtensions,
+  nextGuidedStep
+} from "./ui-actions";
+export type { ActionAvailability } from "./ui-actions";

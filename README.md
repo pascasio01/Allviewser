@@ -1,50 +1,46 @@
 # Allviewser
 
-> Repositorio GitHub provisional. La marca pública de la aplicación se configura en `src/lib/brand.ts` y **no** está registrada en esta entrega. Ver [docs/brand-review.md](docs/brand-review.md).
+> Repositorio GitHub provisional. La marca pública se configura en `src/lib/brand.ts` y **no** está registrada en esta entrega. Ver [docs/brand-review.md](docs/brand-review.md).
 
 **Compañero Digital** — Proyecto Independiente (nombre público provisional)  
 **Creador, fundador y CEO:** Pascasio Emmanuel Reynoso Reyes (@pascasio01)
 
 Nombre comercial e identidad visual **provisionales** (sin símbolo ®). Candidato alternativo en estudio: Brainluk. Ningún nombre está confirmado como legalmente disponible.
 
-## Descripción
+English summary: see [English](#english) below.
 
-Aplicación web local-first que actúa como compañero de trabajo digital: conversación con modelos configurables, proyectos, memoria aprobada, tareas, archivos en sandbox y un taller para generar apps pequeñas con pruebas reales.
+## Estado real (0.2.2)
 
-## Alcance de esta versión (0.1)
+| Área | Estado |
+|------|--------|
+| Proyectos, memoria, tareas, archivos sandbox | Operativo |
+| Conversación con modelo configurable | Operativo (sin simular si falta proveedor) |
+| Taller con app CLI + pruebas | Operativo |
+| Espacio / mantenimiento (edificio ficticio) | Operativo — recorrido completo con persistencia y roles |
+| Comercio inmersivo | Sandbox aislado (sin cobros reales) |
+| Voz / visión / 3D en vivo / remoto | No activos (declarado, no fingido) |
+| Licencia de código | UNLICENSED — decisión del titular pendiente |
 
-Incluye:
+## Captura y demostración
 
-- Interfaz en español (i18n preparada)
-- Proyectos, memoria, tareas e idempotencia
-- Adaptadores de modelo local / OpenAI-compatible (sin respuestas inventadas si no hay proveedor)
-- Taller con app CLI de tareas y tests de comportamiento
-- Exportación y restauración con checksum
-- Mundo visual ligero
-- Módulo aparte de comercio inmersivo en sandbox (`/comercio`)
-- Módulo **Espacio** de mantenimiento demo (`/espacio`): edificio ficticio, fichas, incidencias, línea de tiempo, borradores, pasaporte, visita local, asistente contextual y extensiones aisladas
+![Espacio — escritorio](docs/screenshots/espacio-desktop.png)
 
-No incluye aún (y no se promete):
+![Espacio — móvil](docs/screenshots/espacio-mobile.png)
 
-- Conciencia, emociones ni “IA omnisciente”
-- Voz, visión, mapas o 3D activos (el plano de Espacio es SVG 2D)
-- Continuidad remota desplegada
-- Pagos, reparto u obras reales
-- Licencia y términos de contribución de código (decisión del titular)
+- Capturas auténticas generadas desde la app en ejecución (`docs/screenshots/`).
+- Demo local: `npm run dev` → http://localhost:3000/espacio
+- Guía: [docs/guides/DEMO_ESPACIO.md](docs/guides/DEMO_ESPACIO.md)
 
-**Creador, fundador y CEO:** Pascasio Emmanuel Reynoso Reyes.  
-**Plataforma entregada:** aplicación web (Next.js) en navegador; no es app nativa.
+## Funciones implementadas
 
-## Stack
+- **Explorar / Crear / Resolver / Revisar** como intenciones explícitas.
+- Modo directo (listas) y plano inmersivo 2D SVG.
+- Fichas con procedencia: `en_vivo` · `periodico` · `grabado` · `estimado` · `simulado` · `generado`.
+- Incidencias con roles, evidencias, cierre e historial persistente.
+- Asistente contextual que declara «Información no disponible» si falta el dato.
+- Guía de siguiente paso según actor; navegación móvil colapsable.
 
-- Next.js 15 · React 19 · TypeScript · Tailwind CSS 4 · Vitest
-
-## Requisitos
-
-- Node.js 20+ (probado con 22)
-- npm 10+
-
-## Instalación
+## Instalación comprobada
 
 ```bash
 git clone https://github.com/pascasio01/Allviewser.git
@@ -54,57 +50,89 @@ cp .env.example .env.local   # opcional
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000).  
-Datos locales en `./data/` (ignorado por Git). Variable opcional: `COMPANERO_DATA_DIR`.
-
 ```bash
-npm run build && npm start   # producción local
-npm test                     # suite
-npm run lint && npm run build
-npm run backup:demo
-npm run secret-scan
+npm test && npm run lint && npm run build && npm run secret-scan
 ```
 
-## Configurar un modelo
+Datos en `./data/` (ignorado por Git).
 
-1. Arranca un servidor compatible (por ejemplo Ollama).
-2. En **Configuración**, elige `local` u `openai-compatible`.
-3. URL base de ejemplo: `http://127.0.0.1:11434/v1`
-4. Indica el `modelId`.
-5. Si hace falta clave, usa solo el nombre de la variable de entorno (nunca la pegues en el repo).
+## Primer recorrido (mantenimiento)
 
-Sin modelo configurado, la UI muestra instrucciones reales y no simula inteligencia.
+1. Abrir `/espacio`.
+2. Seleccionar la tubería de aseo planta 1 (lista o plano).
+3. Revisar ficha y etiqueta **simulado**.
+4. Con residente: crear incidencia.
+5. Con administrador: asignar al técnico.
+6. Con técnico: en progreso + evidencia demo.
+7. Solicitar revisión.
+8. Con revisor: verificar y cerrar.
+9. Abrir línea de tiempo / pasaporte.
+10. Reiniciar demo y comprobar semilla/persistencia.
 
-## Documentación
+## Configuración de modelos
 
-| Documento | Contenido |
-|-----------|-----------|
-| [BRAND_REVIEW](docs/brand-review.md) | Investigación preliminar de nombres (no es dictamen legal) |
-| [ARCHITECTURE](docs/ARCHITECTURE.md) | Diseño del núcleo |
-| [SPACE](docs/SPACE.md) | Módulo de espacio / mantenimiento |
-| [DEMO_ESPACIO](docs/guides/DEMO_ESPACIO.md) | Recorrido de mantenimiento |
-| [COMMERCE](docs/COMMERCE.md) | Módulo de comercio (aislado) |
-| [INSTALL](docs/INSTALL.md) | Instalación detallada |
-| [MODELS](docs/MODELS.md) | Adaptadores de modelo |
-| [PERMISSIONS](docs/PERMISSIONS.md) | Modelo de permisos |
-| [BACKUP](docs/BACKUP.md) | Respaldo y restauración |
-| [VALIDATION_REPORT](docs/VALIDATION_REPORT.md) | Comprobaciones ejecutadas |
-| [PENDING_DECISIONS](docs/PENDING_DECISIONS.md) | Decisiones abiertas |
-| [ROADMAP](ROADMAP.md) | Hoja de ruta |
-| [AUTHORS](AUTHORS) | Autoría |
-| [CONTRIBUTING](CONTRIBUTING.md) · [SECURITY](SECURITY.md) · [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) | Comunidad |
-| [CHANGELOG](CHANGELOG.md) · [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md) | Cambios y avisos |
+1. Servidor local u OpenAI-compatible.
+2. En **Configuración**: proveedor, URL, `modelId`.
+3. Clave solo por nombre de variable de entorno.
 
-## Seguridad (resumen)
+Sin modelo: instrucciones reales; no se finge inteligencia.
 
-Espacio de archivos aislado por proyecto, red denegada por defecto en herramientas, secretos fuera del código, y confirmación en acciones sensibles. El agente no puede ampliar sus propios permisos ni alterar pruebas de aceptación para autoaprobarse.
+## Matriz local / externa
 
-## Contribuciones
+| Capacidad | Local | Externa |
+|-----------|-------|---------|
+| Persistencia | Sí (`./data`) | No desplegada |
+| Modelo | Opcional | Opcional (env) |
+| Comercio / pagos | Sandbox | No |
+| Voz / cámara en vivo | No | No |
 
-Se aceptan propuestas no confidenciales (ideas, bugs, diseño). La fusión de código espera a licencia y términos definidos por el titular. Ver [CONTRIBUTING.md](CONTRIBUTING.md).
+## Costes
 
-## Repositorio
+Node 20+, npm; Next.js 15 / React 19 / TypeScript / Vitest / Tailwind 4. Coste de modelo = tu proveedor (cero si no configuras).
 
-https://github.com/pascasio01/Allviewser  
+## Fuentes y límites
 
-Proyecto independiente. No mezclar secretos, datos ni identidad con otros proyectos.
+Edificio e inventario: semilla **simulada**. Evidencias demo ≠ fotos de campo. Marca provisional (`docs/brand-review.md`).
+
+## Arquitectura
+
+UI → API routes → dominio (`space` / `commerce` / `tasks` / `models`) → `./data` → herramientas con grants. Ver [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/SPACE.md](docs/SPACE.md).
+
+## Pruebas
+
+`npm test` (35+), lint, build, secret-scan. Informe: [docs/VALIDATION_REPORT.md](docs/VALIDATION_REPORT.md).
+
+## Hoja de ruta y comunidad
+
+[ROADMAP.md](ROADMAP.md) · [CONTRIBUTING.md](CONTRIBUTING.md) · [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) · [SECURITY.md](SECURITY.md) · [CHANGELOG.md](CHANGELOG.md)
+
+## Licencia y créditos
+
+**UNLICENSED** hasta decisión del titular. Publicar código no otorga por sí solo licencia open source.  
+Créditos: Pascasio Emmanuel Reynoso Reyes (creador, fundador y CEO); terceros en [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) / [docs/ACKNOWLEDGEMENTS.md](docs/ACKNOWLEDGEMENTS.md).
+
+---
+
+## English
+
+**Allviewser** is a provisional GitHub repo name. Public product name (**Compañero Digital — Independent Project**) lives in `src/lib/brand.ts` and is **not** a registered trademark claim.
+
+**Creator, founder & CEO:** Pascasio Emmanuel Reynoso Reyes (@pascasio01)
+
+### What works (0.2.2)
+
+Local-first companion: projects, memory, tasks, sandboxed files, honest model chat, workshop with real tests, isolated commerce sandbox, and **Space** maintenance demo with roles, evidence, timeline, persistence, and provenance labels (`live` / `periodic` / `recorded` / `estimated` / `simulated` / `generated`).
+
+Voice, live 3D, and remote continuity are **not** active and are not faked.
+
+### Quick start
+
+```bash
+npm install && npm run dev
+```
+
+Open `http://localhost:3000/espacio` — guide: `docs/guides/DEMO_ESPACIO.md`.
+
+### License
+
+`UNLICENSED` until the owner decides. Publication alone does not grant an open-source license.

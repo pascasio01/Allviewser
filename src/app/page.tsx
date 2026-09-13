@@ -41,16 +41,37 @@ export default function HomePage() {
             <Link className="btn" href="/proyectos">
               Abrir proyectos
             </Link>
+            <Link className="btn secondary" href="/espacio">
+              Espacio / mantenimiento
+            </Link>
             <Link className="btn secondary" href="/conversacion">
               Conversar
             </Link>
             <Link className="btn secondary" href="/tareas">
               Taller / tareas
             </Link>
-            <Link className="btn secondary" href="/mundo">
-              Mundo visual
-            </Link>
           </div>
+        </section>
+
+        <section className="panel">
+          <h2>Intenciones claras</h2>
+          <p className="muted">
+            El compañero no finge capacidades. Cada modo pide algo concreto y muestra qué falta si no está listo.
+          </p>
+          <ul>
+            <li>
+              <strong>Explorar</strong> — fichas, plano 2D y documentos del edificio demo.
+            </li>
+            <li>
+              <strong>Crear</strong> — taller y borradores con criterios de aceptación.
+            </li>
+            <li>
+              <strong>Resolver</strong> — incidencias con roles, evidencias y cierre verificable.
+            </li>
+            <li>
+              <strong>Revisar</strong> — línea de tiempo, pasaporte y persistencia real.
+            </li>
+          </ul>
         </section>
 
         <section className="panel">
@@ -58,12 +79,13 @@ export default function HomePage() {
           <ul>
             <li>Persistencia local por proyecto (conversaciones, memoria, tareas, archivos).</li>
             <li>Adaptador de modelo local / OpenAI-compatible; sin simulación si no hay modelo.</li>
+            <li>Espacio de mantenimiento demo con permisos, evidencias y procedencia de datos.</li>
             <li>Herramientas de archivos y taller de creación de apps con pruebas.</li>
             <li>Exportación/restauración con validación de integridad (mismo disco).</li>
           </ul>
           <p className="muted">
-            No promete conciencia, acceso universal ni cero errores. Las capacidades de voz, visión y remoto
-            están preparadas pero inactivas hasta configurar integraciones reales.
+            No promete conciencia, acceso universal ni cero errores. Voz, visión 3D en vivo y remoto
+            permanecen inactivos hasta configurar integraciones reales.
           </p>
         </section>
       </StateBlock>

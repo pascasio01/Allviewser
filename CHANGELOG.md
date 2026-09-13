@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.2 — 2026-09-13
+
+### Añadido / cambiado
+
+- Etiquetas de procedencia de datos (`en_vivo`, `periodico`, `grabado`, `estimado`, `simulado`, `generado`) en objetos y evidencias del Espacio.
+- Acciones de UI respetan el actor activo (sin hardcodear admin/técnico/revisor); botones deshabilitados explican el rol faltante.
+- Guía de «siguiente paso», rail Explorar/Crear/Resolver/Revisar e indicador de conexión.
+- Navegación móvil colapsable; paneles de Espacio apilados en pantallas estrechas.
+- Pruebas de procedencia y disponibilidad por rol; README bilingüe con estado real.
+
 ## 0.2.1 — 2026-09-13
 
 ### Añadido / cambiado

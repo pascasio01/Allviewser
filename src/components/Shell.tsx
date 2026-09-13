@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { brand } from "@/lib/brand";
 import { t } from "@/lib/i18n/es";
 import { useAppState } from "./AppProvider";
@@ -24,6 +25,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const messages = t();
   const { projectId, projects, setProjectId, config } = useAppState();
+  const [navOpen, setNavOpen] = useState(false);
+
+  useEffect(() => {
+    setNavOpen(false);
+  }, [pathname]);
 
   return (
     <div className={`app-shell ${config?.reducedMotion ? "reduce-motion" : ""}`}>
@@ -31,15 +37,24 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <div className="brand-block" style={{ display: "flex", gap: "0.65rem", alignItems: "center", marginBottom: "0.35rem" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={brand.logoPath} alt="" width={40} height={40} style={{ borderRadius: 10 }} />
-          <div>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <p className="brand-mark" style={{ margin: 0 }}>{brand.shortName}</p>
             <p className="brand-sub" style={{ margin: 0 }}>{brand.publicName}</p>
           </div>
+          <button
+            type="button"
+            className="btn secondary mobile-nav-toggle"
+            aria-expanded={navOpen}
+            aria-controls="primary-nav"
+            onClick={() => setNavOpen((v) => !v)}
+          >
+            {navOpen ? "Cerrar" : "Menú"}
+          </button>
         </div>
         <p className="brand-sub" style={{ fontSize: "0.7rem", opacity: 0.85, marginBottom: "1rem" }}>
           {brand.provisionalNotice}
         </p>
-        <nav className="nav-list">
+        <nav id="primary-nav" className={`nav-list ${navOpen ? "open" : ""}`}>
           {links.map((l) => (
             <Link
               key={l.href}

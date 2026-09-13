@@ -41,7 +41,7 @@ export const brand = {
     role: "Creador, fundador y CEO",
     github: "pascasio01",
   },
-  version: "0.2.1",
+  version: "0.2.2",
   status: "primera-version-funcional" as const,
   alternateCandidates: ["Brainluk"] as const,
 };

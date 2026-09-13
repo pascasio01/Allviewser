@@ -33,6 +33,14 @@ Módulo aislado en `src/lib/space` + UI `/espacio`. Detalle: [docs/SPACE.md](doc
 3. Sandbox de ejecución de extensiones
 4. 3D opcional sin romper modo directo
 5. Reutilizar ficha/permisos en reservas/comercio cuando existan
+6. Procedencia en todas las vistas multimedia cuando se activen módulos reales
+
+## v0.2.2 — Procedencia, roles en UI y presentación (hecho)
+
+- Etiquetas de procedencia en objetos/evidencias del Espacio
+- Acciones de mantenimiento ligadas al actor activo
+- Guía de siguiente paso + rail Explorar/Crear/Resolver/Revisar
+- Navegación móvil colapsable y README bilingüe con capturas reales
 
 ## v0.2 — Modelos y taller
 

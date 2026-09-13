@@ -287,6 +287,12 @@ export async function attachEvidence(
     },
     uploadedBy: actor.id,
     demoAssetLabel: input.demoAssetLabel,
+    provenance: {
+      kind: "simulado",
+      source: "Evidencia de demostración",
+      updatedAt: nowIso(),
+      caveat: "Adjunto demo. No es fotografía de campo ni medición calibrada.",
+    },
   };
   state.evidence.unshift(evidence);
   incident.evidenceIds.push(evidence.id);

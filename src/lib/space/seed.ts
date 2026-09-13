@@ -1,5 +1,8 @@
+import { demoInventoryProvenance } from "../media/provenance";
 import type { Actor, Place, SharedVisit, SpaceObject, SpaceState, TimelineEvent } from "./types";
 import { spaceDemoCopy } from "./copy";
+
+const demoProv = () => demoInventoryProvenance(spaceDemoCopy.inventorySource, "2026-09-01");
 
 export const DEMO_PLACE_ID = "place-edificio-demo-allviewser";
 export const DEMO_PIPE_ID = "obj-tuberia-planta1-aseo";
@@ -61,6 +64,7 @@ export const demoObjects: SpaceObject[] = [
     y: 28,
     source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
+    provenance: demoProv(),
     documents: [
       {
         id: "doc-plano-planta1",
@@ -102,6 +106,7 @@ export const demoObjects: SpaceObject[] = [
     y: 78,
     source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
+    provenance: demoProv(),
     documents: [
       {
         id: "doc-valvula",
@@ -131,6 +136,7 @@ export const demoObjects: SpaceObject[] = [
     y: 42,
     source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
+    provenance: demoProv(),
     documents: [],
     history: hist("obj-panel-electrico", "Cuadro eléctrico"),
     tags: ["electricidad"],
@@ -151,6 +157,7 @@ export const demoObjects: SpaceObject[] = [
     y: 88,
     source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
+    provenance: demoProv(),
     documents: [],
     history: hist("obj-puerta-acceso", "Puerta de acceso"),
     tags: ["acceso"],
@@ -172,6 +179,7 @@ export const demoObjects: SpaceObject[] = [
     y: 30,
     source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
+    provenance: demoProv(),
     documents: [],
     history: hist("obj-sala-reuniones", "Sala de reuniones A"),
     tags: ["espacio", "visita-demo"],
@@ -192,6 +200,7 @@ export const demoObjects: SpaceObject[] = [
     y: 70,
     source: spaceDemoCopy.inventorySource,
     infoAsOf: "2026-09-01",
+    provenance: demoProv(),
     documents: [],
     history: hist("obj-mesa-recepcion", "Mesa de recepción"),
     tags: ["mobiliario", "borrador"],
@@ -233,6 +242,12 @@ function seedTimeline(): TimelineEvent[] {
       actorName: "Sistema",
       dates: { uploadedAt: CREATED, eventAt: CREATED },
       isSystemRecord: true,
+      provenance: {
+        kind: "simulado",
+        source: "Semilla demo",
+        updatedAt: CREATED,
+        caveat: "Registro de sistema; no es telemetría en vivo.",
+      },
     },
   ];
 }

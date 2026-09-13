@@ -89,6 +89,8 @@ export type SpaceObject = {
   y: number;
   source: string;
   infoAsOf: string;
+  /** Clasificación honesta: simulado / grabado / estimado / etc. */
+  provenance: import("../media/provenance").ProvenanceLabel;
   documents: DocRef[];
   history: HistoryEntry[];
   tags: string[];
@@ -113,6 +115,7 @@ export type Evidence = {
   dates: DateTriple;
   uploadedBy: string;
   demoAssetLabel?: string;
+  provenance?: import("../media/provenance").ProvenanceLabel;
 };
 
 export type Incident = {
@@ -150,6 +153,7 @@ export type TimelineEvent = {
   actorName: string;
   dates: DateTriple;
   isSystemRecord: boolean;
+  provenance?: import("../media/provenance").ProvenanceLabel;
 };
 
 export type SceneDraft = {

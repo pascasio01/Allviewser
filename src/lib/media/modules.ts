@@ -3,12 +3,14 @@
  * Solo se activan cuando la integración está realmente disponible.
  */
 
+import type { ProvenanceKind, ProvenanceLabel } from "./provenance";
+
 export type MediaAvailability = {
   id: string;
   label: string;
   available: boolean;
   reason: string;
-  contentLabels: Array<"en_vivo" | "periodico" | "grabado" | "reconstruccion_3d" | "generado">;
+  contentLabels: ProvenanceKind[];
 };
 
 export function probeMediaModules(): MediaAvailability[] {
@@ -17,7 +19,8 @@ export function probeMediaModules(): MediaAvailability[] {
       id: "transcription",
       label: "Transcripción",
       available: false,
-      reason: "Sin motor de transcripción configurado. Requiere integración explícita y permiso de micrófono.",
+      reason:
+        "Sin motor de transcripción configurado. Requiere integración explícita y permiso de micrófono.",
       contentLabels: ["generado"],
     },
     {
@@ -45,21 +48,26 @@ export function probeMediaModules(): MediaAvailability[] {
       id: "models_3d",
       label: "Modelos 3D",
       available: false,
-      reason: "Módulo preparado; no activado en v0.1 para no perjudicar accesibilidad.",
-      contentLabels: ["reconstruccion_3d", "generado"],
+      reason: "Módulo preparado; no activado. Un modelo 3D no equivale a una cámara en vivo.",
+      contentLabels: ["simulado", "generado"],
     },
     {
       id: "av_sources",
       label: "Fuentes audiovisuales",
       available: false,
-      reason: "No se incorporan transmisiones solo por ser accesibles; requiere verificación de condiciones.",
+      reason:
+        "No se incorporan transmisiones solo por ser accesibles; requiere verificación de condiciones.",
       contentLabels: ["en_vivo", "grabado"],
+    },
+    {
+      id: "voice_input",
+      label: "Entrada de voz",
+      available: false,
+      reason: "Disponible solo con motor de voz configurado y permiso de micrófono.",
+      contentLabels: ["generado"],
     },
   ];
 }
 
-export type ContentLabel = {
-  kind: MediaAvailability["contentLabels"][number];
-  source?: string;
-  date?: string;
-};
+/** @deprecated Prefer ProvenanceLabel from provenance.ts */
+export type ContentLabel = ProvenanceLabel;

@@ -11,6 +11,17 @@ import type {
   TimelineEvent,
 } from "@/lib/space/types";
 import { INCIDENT_STATUS_LABELS, OBJECT_KIND_LABELS } from "@/lib/space/types";
+import { DEMO_PIPE_ID, ACTOR_TECNICO } from "@/lib/space/seed";
+import {
+  availabilityAssign,
+  availabilityAttach,
+  availabilityConfirmDraft,
+  availabilityCreateIncident,
+  availabilityExtensions,
+  availabilityTransition,
+  nextGuidedStep,
+} from "@/lib/space/ui-actions";
+import { formatProvenance } from "@/lib/media/provenance";
 
 type Tab =
   | "directo"
@@ -60,7 +71,7 @@ export default function EspacioPage() {
   const [tab, setTab] = useState<Tab>("directo");
   const [state, setState] = useState<SpaceState | null>(null);
   const [actorId, setActorId] = useState("actor-residente");
-  const [selectedId, setSelectedId] = useState<string | null>("obj-tuberia-planta1-aseo");
+  const [selectedId, setSelectedId] = useState<string | null>(DEMO_PIPE_ID);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -93,6 +104,20 @@ export default function EspacioPage() {
   const timeline = useMemo(() => state?.timeline ?? [], [state?.timeline]);
   const selected: SpaceObject | undefined = objects.find((o) => o.id === selectedId);
   const actor: Actor | undefined = actors.find((a) => a.id === actorId);
+
+  const guided = useMemo(
+    () => nextGuidedStep(incidents.find((i) => i.objectId === selectedId && i.status !== "cerrada" && i.status !== "cancelada") ?? incidents.find((i) => i.status !== "cerrada" && i.status !== "cancelada"), actor),
+    [incidents, selectedId, actor],
+  );
+  const createAvail = availabilityCreateIncident(actor?.role ?? "observador");
+  const assignAvail = availabilityAssign(actor?.role ?? "observador");
+  const attachAvail = availabilityAttach(actor?.role ?? "observador");
+  const confirmAvail = availabilityConfirmDraft(actor?.role ?? "observador");
+  const extAvail = availabilityExtensions(actor?.role ?? "observador");
+  const toProgress = availabilityTransition(actor?.role ?? "observador", "en_progreso");
+  const toReview = availabilityTransition(actor?.role ?? "observador", "pendiente_revision");
+  const toClose = availabilityTransition(actor?.role ?? "observador", "cerrada");
+  const online = typeof navigator === "undefined" ? true : navigator.onLine;
 
   const selectedIncidents: Incident[] = useMemo(
     () => incidents.filter((i) => !selectedId || i.objectId === selectedId),
@@ -172,6 +197,48 @@ export default function EspacioPage() {
 
       {message && <p className="ok" role="status">{message}</p>}
       {error && <p className="error" role="alert">{error}</p>}
+
+      <div className="status-row" role="status">
+        <span className={`conn-dot ${online ? "ok" : "bad"}`} aria-hidden />
+        <span className="muted">{online ? "Conexión local activa" : "Sin conexión de red (datos locales)"}</span>
+      </div>
+      <div className="mode-rail" role="navigation" aria-label="Intenciones">
+        {[
+          { id: "explorar", label: "Explorar", tab: "directo" as Tab },
+          { id: "crear", label: "Crear", tab: "borradores" as Tab },
+          { id: "resolver", label: "Resolver", tab: "incidencias" as Tab },
+          { id: "revisar", label: "Revisar", tab: "timeline" as Tab },
+        ].map((m) => (
+          <button
+            key={m.id}
+            type="button"
+            className={`btn secondary mode-chip ${tab === m.tab ? "active" : ""}`}
+            onClick={() => setTab(m.tab)}
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
+      <div className="guide-banner panel" role="status">
+        <strong>Siguiente paso:</strong> {guided.label}
+        {!guided.availability.enabled && guided.availability.reason && (
+          <p className="muted" style={{ margin: "0.35rem 0 0" }}>{guided.availability.reason}</p>
+        )}
+        {guided.availability.suggestActorId && !guided.availability.enabled && (
+          <button
+            type="button"
+            className="btn secondary"
+            style={{ marginTop: "0.5rem" }}
+            onClick={() => {
+              setActorId(guided.availability.suggestActorId!);
+              setTab(guided.tabHint as Tab);
+            }}
+          >
+            Cambiar al actor sugerido
+          </button>
+        )}
+      </div>
+
 
       <nav className="tabs" aria-label="Secciones del espacio" style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
         {TABS.map((t) => (
@@ -253,6 +320,11 @@ export default function EspacioPage() {
           {selected && (
             <article className="panel" aria-live="polite">
               <h3>Ficha · {selected.name}</h3>
+              <p>
+                <span className="provenance-badge" title={selected.provenance.caveat}>
+                  {formatProvenance(selected.provenance)}
+                </span>
+              </p>
               <p>{selected.description}</p>
               <p className="muted">
                 Fuente: {selected.source} · Información a {selected.infoAsOf}
@@ -301,6 +373,8 @@ export default function EspacioPage() {
                 <button
                   type="button"
                   className="btn"
+                  disabled={!createAvail.enabled}
+                  title={createAvail.reason}
                   onClick={() =>
                     run("Incidencia creada", async () => {
                       await apiPost({
@@ -317,6 +391,7 @@ export default function EspacioPage() {
                 >
                   Crear incidencia
                 </button>
+                {!createAvail.enabled && <p className="muted">{createAvail.reason}</p>}
               </div>
               <p className="muted">Actor actual: {actor?.displayName ?? actorId}</p>
             </article>
@@ -340,13 +415,15 @@ export default function EspacioPage() {
                   <button
                     type="button"
                     className="btn secondary"
+                    disabled={!assignAvail.enabled}
+                    title={assignAvail.reason}
                     onClick={() =>
                       run("Asignada", () =>
                         apiPost({
                           action: "assign_incident",
-                          actorId: "actor-admin",
+                          actorId,
                           incidentId: inc.id,
-                          assigneeId: "actor-tecnico",
+                          assigneeId: ACTOR_TECNICO,
                         }),
                       )
                     }
@@ -358,11 +435,13 @@ export default function EspacioPage() {
                   <button
                     type="button"
                     className="btn secondary"
+                    disabled={!toProgress.enabled}
+                    title={toProgress.reason}
                     onClick={() =>
                       run("En progreso", () =>
                         apiPost({
                           action: "transition_incident",
-                          actorId: "actor-tecnico",
+                          actorId,
                           incidentId: inc.id,
                           to: "en_progreso",
                         }),
@@ -376,11 +455,13 @@ export default function EspacioPage() {
                   <button
                     type="button"
                     className="btn secondary"
+                    disabled={!attachAvail.enabled}
+                    title={attachAvail.reason}
                     onClick={() =>
                       run("Evidencia anexada", () =>
                         apiPost({
                           action: "attach_evidence",
-                          actorId: "actor-tecnico",
+                          actorId,
                           incidentId: inc.id,
                           kind: "fotografia_demo",
                           title: "Evidencia demo",
@@ -397,11 +478,13 @@ export default function EspacioPage() {
                   <button
                     type="button"
                     className="btn secondary"
+                    disabled={!toReview.enabled}
+                    title={toReview.reason}
                     onClick={() =>
                       run("Pendiente revisión", () =>
                         apiPost({
                           action: "transition_incident",
-                          actorId: "actor-tecnico",
+                          actorId,
                           incidentId: inc.id,
                           to: "pendiente_revision",
                         }),
@@ -415,11 +498,13 @@ export default function EspacioPage() {
                   <button
                     type="button"
                     className="btn"
+                    disabled={!toClose.enabled}
+                    title={toClose.reason}
                     onClick={() =>
                       run("Cerrada", () =>
                         apiPost({
                           action: "transition_incident",
-                          actorId: "actor-revisor",
+                          actorId,
                           incidentId: inc.id,
                           to: "cerrada",
                           note: "Cierre verificado",
@@ -509,11 +594,13 @@ export default function EspacioPage() {
                 {d.status === "borrador" && (
                   <div style={{ display: "flex", gap: "0.4rem" }}>
                     <button
+                  disabled={!confirmAvail.enabled}
+                  title={confirmAvail.reason}
                       type="button"
                       className="btn"
                       onClick={() =>
                         run("Borrador confirmado", () =>
-                          apiPost({ action: "confirm_draft", actorId: "actor-admin", draftId: d.id }),
+                          apiPost({ action: "confirm_draft", actorId, draftId: d.id }),
                         )
                       }
                     >
@@ -696,11 +783,13 @@ export default function EspacioPage() {
         <section className="panel stack">
           <h2>Extensiones (aisladas al lugar)</h2>
           <button
+                disabled={!extAvail.enabled}
+                title={extAvail.reason}
             type="button"
             className="btn"
             onClick={() =>
               run("Extensión instalada", () =>
-                apiPost({ action: "install_extension", actorId: "actor-admin" }),
+                apiPost({ action: "install_extension", actorId }),
               )
             }
           >
@@ -716,13 +805,15 @@ export default function EspacioPage() {
                 </p>
                 <p className="muted">{ext.manifest.uninstallProcedure}</p>
                 <button
+                      disabled={!extAvail.enabled}
+                      title={extAvail.reason}
                   type="button"
                   className="btn secondary"
                   onClick={() =>
                     run("Extensión desinstalada", () =>
                       apiPost({
                         action: "uninstall_extension",
-                        actorId: "actor-admin",
+                        actorId,
                         extensionId: ext.manifest.id,
                       }),
                     )
