@@ -11,17 +11,24 @@ export default function HomePage() {
 
   return (
     <div className="stack">
-      <header>
-        <p className="badge">v{brand.version} · {brand.status}</p>
-        <h1 className="h-display" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", margin: "0.4rem 0" }}>
-          {brand.shortName}
-        </h1>
-        <p className="muted" style={{ maxWidth: "42rem", fontSize: "1.05rem" }}>
-          {brand.tagline}
-        </p>
-        <p className="muted" style={{ marginTop: "0.75rem" }}>
-          {brand.founder.role}: {brand.founder.name}
-        </p>
+      <header className="home-hero">
+        <div className="home-hero-copy">
+          <p className="badge">v{brand.version} · {brand.status}</p>
+          <h1 className="h-display" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", margin: "0.4rem 0" }}>
+            {brand.shortName}
+          </h1>
+          <p className="muted" style={{ maxWidth: "42rem", fontSize: "1.05rem" }}>
+            {brand.tagline}
+          </p>
+          <p className="muted" style={{ marginTop: "0.75rem" }}>
+            {brand.founder.role}: {brand.founder.name}
+          </p>
+        </div>
+        <div className="home-hero-visual" aria-hidden>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/hero.png" alt="" className="home-hero-img" />
+          <div className="home-hero-orbit" />
+        </div>
       </header>
 
       <StateBlock loading={loading} error={error} offline={offline} onRetry={() => void refresh()}>

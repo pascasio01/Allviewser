@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3 — 2026-09-14
+
+### Añadido
+
+- Presentación visual de producto: hero, diagrama SVG animado y mapa de ecosistema en `docs/assets/`.
+- README estilo “landing” (badges, arquitectura, quick start, casos de uso) para que se vea poderoso y fácil de aportar.
+- Mundo visual con profundidad 3D ligera (CSS + parallax suave) y hero animado en inicio; respeta `prefers-reduced-motion`.
+
 ## 0.1.2 — 2026-09-14
 
 ### Añadido

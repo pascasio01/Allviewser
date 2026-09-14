@@ -2,6 +2,9 @@
 
 Guía para **probar**, **revisar** y **aportar** a Allviewser / Compañero Digital.
 
+> Presentación visual (hero, arquitectura, ecosistema): ver el [README](../README.md).
+> Esta guía se centra en arrancar en serio.
+
 ## Resumen
 
 | | Path 1 — Arranque rápido | Path 2 — Terminal / coding agent |
