@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.4 — 2026-09-14
+
+### Añadido
+
+- Núcleo de IA real: `GET /api/ai/status` + sondeo de proveedor (`/models`) con latencia.
+- Panel **Motor cognitivo** en inicio y chip de estado en barra lateral / conversación.
+- Tema futurista `dim` (HUD, orbe IA, módulos, scan hero) con `prefers-reduced-motion`.
+- Hero tecnológico y README orientados a IA útil (sin teatro).
+
 ## 0.1.3 — 2026-09-14
 
 ### Añadido

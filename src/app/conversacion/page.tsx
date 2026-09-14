@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAppState } from "@/components/AppProvider";
 import { StateBlock } from "@/components/StateBlock";
+import { AiCorePanel } from "@/components/AiCorePanel";
 import type { Conversation } from "@/lib/conversations/types";
 
 export default function ChatPage() {
@@ -74,19 +75,28 @@ export default function ChatPage() {
 
   return (
     <div className="stack">
-      <h1>Conversación</h1>
-      <p className="muted">
-        Las respuestas solo proceden del proveedor configurado. Si no hay modelo, verás instrucciones reales.
-      </p>
+      <header className="chat-hero">
+        <div>
+          <p className="badge">Canal cognitivo · proveedor real</p>
+          <h1 className="h-display">Conversación</h1>
+          <p className="muted">
+            Las respuestas solo vienen del modelo configurado. Si no hay proveedor, verás instrucciones honestas — no
+            teatro.
+          </p>
+        </div>
+        <AiCorePanel compact />
+      </header>
       <StateBlock error={error} onRetry={() => void refresh()}>
-        <section className="panel">
+        <section className="panel chat-panel">
           <div className="chat-log" aria-live="polite">
             {!conversation?.messages?.length && (
-              <div className="empty">Aún no hay mensajes en esta conversación.</div>
+              <div className="empty chat-empty">
+                Aún no hay mensajes. Conecta un modelo en Configuración o escribe para recibir la guía real del sistema.
+              </div>
             )}
             {conversation?.messages.map((m) => (
               <div key={m.id} className={`bubble ${m.role === "user" ? "user" : "assistant"}`}>
-                <strong>{m.role === "user" ? "Tú" : "Compañero"}</strong>
+                <strong>{m.role === "user" ? "Tú" : "Allviewser"}</strong>
                 {"\n"}
                 {m.content}
                 {m.meta?.error && (
@@ -96,6 +106,13 @@ export default function ChatPage() {
                 )}
               </div>
             ))}
+            {loading && (
+              <div className="bubble assistant ai-typing" aria-live="polite">
+                <strong>Allviewser</strong>
+                {"\n"}
+                Pensando con el proveedor configurado…
+              </div>
+            )}
           </div>
           <div className="stack" style={{ marginTop: "1rem" }}>
             <label htmlFor="msg">Mensaje</label>
@@ -104,7 +121,13 @@ export default function ChatPage() {
               className="textarea"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              placeholder="Escribe un mensaje…"
+              placeholder="Pregunta, pide un plan, o pide generar una utilidad del taller…"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+                  e.preventDefault();
+                  void send();
+                }
+              }}
             />
             <div className="row">
               <button type="button" className="btn" disabled={loading || !text.trim()} onClick={() => void send()}>
@@ -113,6 +136,9 @@ export default function ChatPage() {
               <button type="button" className="btn secondary" disabled={!loading} onClick={() => void stop()}>
                 Detener
               </button>
+              <span className="muted" style={{ fontSize: "0.85rem" }}>
+                ⌘/Ctrl + Enter
+              </span>
             </div>
           </div>
         </section>

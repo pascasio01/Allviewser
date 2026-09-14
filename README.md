@@ -4,11 +4,11 @@
 
 <h1 align="center">Allviewser</h1>
 
-<p align="center"><strong>El punto dulce entre “solo chat” y “montarte un stack desde cero”</strong> para trabajo digital local-first.</p>
+<p align="center"><strong>El punto dulce entre “solo chat” y “montarte un stack desde cero”</strong> — compañero digital local-first con <strong>IA real</strong>.</p>
 
 <p align="center">
-  Compañero de trabajo con proyectos, memoria aprobada, taller verificable, sandbox de archivos<br/>
-  y un módulo de comercio inmersivo en demo — útil hoy, evolutivo mañana.
+  Proyectos · memoria aprobada · taller verificable · sandbox · comercio demo<br/>
+  + núcleo de IA sondeable (Ollama / OpenAI-compatible) — útil hoy, evolutivo mañana.
 </p>
 
 <p align="center">
@@ -19,7 +19,8 @@
 </p>
 
 <p align="center">
-  <img alt="versión" src="https://img.shields.io/badge/versión-0.1.3-1f6f66?style=flat-square" />
+  <img alt="versión" src="https://img.shields.io/badge/versión-0.1.4-2de2c2?style=flat-square" />
+  <img alt="IA real" src="https://img.shields.io/badge/IA-real%20(Ollama%20%2F%20OpenAI--compat)-0b3d38?style=flat-square" />
   <img alt="local-first" src="https://img.shields.io/badge/local--first-sí-0d3d38?style=flat-square" />
   <img alt="Node" src="https://img.shields.io/badge/node-20%20%7C%2022-102a28?style=flat-square" />
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-15-000000?style=flat-square" />
@@ -30,7 +31,7 @@
 </p>
 
 <p align="center">
-  <strong>Compañero Digital</strong> — Proyecto Independiente<br/>
+  <strong>Allviewser</strong> — Compañero Digital · Proyecto Independiente<br/>
   Autor: <strong>Pascasio Emmanuel Reynoso Reyes</strong>
   (<a href="https://github.com/pascasio01">@pascasio01</a>)<br/>
   <em>Nombre comercial provisional · marca en <code>src/lib/brand.ts</code></em>
@@ -38,6 +39,7 @@
 
 ---
 
+<p align="center"><strong>IA real + herramientas útiles.</strong> Conecta Ollama (u otro endpoint OpenAI-compatible), sondea el núcleo, conversa, guarda memoria aprobada y genera utilidades con pruebas. Sin proveedor: cero teatro — instrucciones honestas y módulos que ya sirven.</p>
 <p align="center">
   <img src="docs/assets/architecture.svg" alt="Diagrama de arquitectura Allviewser" width="920" />
 </p>
