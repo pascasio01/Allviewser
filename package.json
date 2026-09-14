@@ -1,6 +1,6 @@
 {
   "name": "companero-digital",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "private": true,
   "description": "Allviewser / Compañero Digital — Proyecto Independiente. App web local-first.",
   "author": {
@@ -16,6 +16,10 @@
     "url": "https://github.com/pascasio01/Allviewser/issues"
   },
   "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20 <25",
+    "npm": ">=10"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -23,6 +27,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "doctor": "tsx scripts/doctor.ts",
     "validate": "npm run test && npm run lint && npm run build",
     "backup:demo": "tsx scripts/backup-restore-demo.ts",
     "secret-scan": "tsx scripts/secret-scan.ts"

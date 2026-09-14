@@ -1,101 +1,222 @@
-# Allviewser
+<p align="center">
+  <img src="docs/assets/allviewser-hero.png" alt="Allviewser — Compañero Digital local-first" width="920" />
+</p>
 
-**Compañero Digital** — Proyecto Independiente  
-**Autor:** Pascasio Emmanuel Reynoso Reyes (@pascasio01)
+<h1 align="center">Allviewser</h1>
 
-Nombre comercial provisional (pendiente de verificación). La marca vive en `src/lib/brand.ts`.
+<p align="center"><strong>El punto dulce entre “solo chat” y “montarte un stack desde cero”</strong> — compañero digital local-first con <strong>IA real</strong>.</p>
 
-## Descripción
+<p align="center">
+  Proyectos · memoria aprobada · taller verificable · sandbox · comercio demo<br/>
+  + núcleo de IA sondeable (Ollama / OpenAI-compatible) — útil hoy, evolutivo mañana.
+</p>
 
-Aplicación web local-first que actúa como compañero de trabajo digital: conversación con modelos configurables, proyectos, memoria aprobada, tareas, archivos en sandbox y un taller para generar apps pequeñas con pruebas reales.
+<p align="center">
+  <a href="#probar-allviewser">Probar en local</a> ·
+  <a href="#arranque-rápido">Arranque rápido</a> ·
+  <a href="docs/ARCHITECTURE.md">Arquitectura</a> ·
+  <a href="CONTRIBUTING.md">Aportar</a>
+</p>
 
-## Alcance de esta versión (0.1)
+<p align="center">
+  <img alt="versión" src="https://img.shields.io/badge/versión-0.1.4-2de2c2?style=flat-square" />
+  <img alt="IA real" src="https://img.shields.io/badge/IA-real%20(Ollama%20%2F%20OpenAI--compat)-0b3d38?style=flat-square" />
+  <img alt="local-first" src="https://img.shields.io/badge/local--first-sí-0d3d38?style=flat-square" />
+  <img alt="Node" src="https://img.shields.io/badge/node-20%20%7C%2022-102a28?style=flat-square" />
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-15-000000?style=flat-square" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square" />
+  <img alt="licencia" src="https://img.shields.io/badge/licencia-pendiente-b86b2c?style=flat-square" />
+  <a href="CODE_OF_CONDUCT.md"><img alt="código de conducta" src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4B6BFF?style=flat-square" /></a>
+  <img alt="CI" src="https://img.shields.io/badge/CI-doctor%20%2B%20tests-2bb3a3?style=flat-square" />
+</p>
 
-Incluye:
+<p align="center">
+  <strong>Allviewser</strong> — Compañero Digital · Proyecto Independiente<br/>
+  Autor: <strong>Pascasio Emmanuel Reynoso Reyes</strong>
+  (<a href="https://github.com/pascasio01">@pascasio01</a>)<br/>
+  <em>Nombre comercial provisional · marca en <code>src/lib/brand.ts</code></em>
+</p>
 
-- Interfaz en español (i18n preparada)
-- Proyectos, memoria, tareas e idempotencia
-- Adaptadores de modelo local / OpenAI-compatible (sin respuestas inventadas si no hay proveedor)
-- Taller con app CLI de tareas y tests de comportamiento
-- Exportación y restauración con checksum
-- Mundo visual ligero
-- Módulo aparte de comercio inmersivo en sandbox (`/comercio`)
+---
 
-No incluye aún (y no se promete):
+<p align="center"><strong>IA real + herramientas útiles.</strong> Conecta Ollama (u otro endpoint OpenAI-compatible), sondea el núcleo, conversa, guarda memoria aprobada y genera utilidades con pruebas. Sin proveedor: cero teatro — instrucciones honestas y módulos que ya sirven.</p>
+<p align="center">
+  <img src="docs/assets/architecture.svg" alt="Diagrama de arquitectura Allviewser" width="920" />
+</p>
 
-- Conciencia, emociones ni “IA omnisciente”
-- Voz, visión, mapas o 3D activos
-- Continuidad remota desplegada
-- Pagos o reparto reales en el módulo de comercio
-- Licencia y términos de contribución de código (decisión del titular)
+<p align="center">
+  <img src="docs/assets/allviewser-ecosystem.png" alt="Ecosistema visual Allviewser" width="920" />
+</p>
 
-## Stack
+## ¿Qué es Allviewser?
 
-- Next.js 15 · React 19 · TypeScript · Tailwind CSS 4 · Vitest
+Allviewser es una app web **local-first** que actúa como compañero digital de trabajo: conversas con modelos configurables, organizas proyectos, guardas memoria **aprobada**, ejecutas tareas, trabajas archivos en sandbox y generas apps pequeñas en un taller **con pruebas reales**.
 
-## Requisitos
+No es un juguete de demos vacías ni una promesa de “IA omnisciente”. Es una base **poderosa, real y útil** que puedes mirar, correr y evolucionar.
 
-- Node.js 20+ (probado con 22)
-- npm 10+
+### Casos de uso
 
-## Instalación
+- Centro de control personal / de equipo pequeño en tu máquina
+- Taller para generar utilidades CLI con tests
+- Memoria de hechos y decisiones (no alucinaciones persistentes)
+- Demo de comercio inmersivo en sandbox (`/comercio`) — sin cobros reales
+- Respaldo/restauración con checksum en el mismo disco
+
+### Capacidades clave
+
+- **Local-first:** datos en `./data/` (o `COMPANERO_DATA_DIR`)
+- **Modelos opcionales:** local / OpenAI-compatible; sin proveedor = instrucciones honestas
+- **Sandbox:** archivos y herramientas con límites
+- **Doctor + CI:** `npm run doctor`, tests, lint, build, secret-scan
+- **Mundo visual + animación:** profundidad 3D ligera en UI (respeta `prefers-reduced-motion`)
+- **Comercio demo aislado:** no bloquea el núcleo del compañero
+
+### Stack
+
+Next.js 15 · React 19 · TypeScript · Tailwind CSS 4 · Vitest
+
+---
+
+## Probar Allviewser
 
 ```bash
 git clone https://github.com/pascasio01/Allviewser.git
 cd Allviewser
-npm install
-cp .env.example .env.local   # opcional
+npm ci
+npm run doctor
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000).  
-Datos locales en `./data/` (ignorado por Git). Variable opcional: `COMPANERO_DATA_DIR`.
+Abre **http://localhost:3000**
+
+<p align="center">
+  <a href="docs/INSTALL.md"><img alt="Guía de instalación" src="https://img.shields.io/badge/⚡_Instalación_profesional-Path_1_%2F_Path_2-1f6f66?style=for-the-badge" /></a>
+</p>
+
+---
+
+## Arranque rápido
+
+Ejemplo mínimo — clonar, diagnosticar y arrancar:
 
 ```bash
-npm run build && npm start   # producción local
-npm test                     # suite
-npm run lint && npm run build
-npm run backup:demo
-npm run secret-scan
+# reproducible
+npm ci
+
+# comprueba Node, npm, lockfile, data/ y upgrades opcionales
+npm run doctor
+
+# UI en http://localhost:3000
+npm run dev
 ```
 
-## Configurar un modelo
+Desde el **centro de control**: **Proyectos** · **Conversación** · **Taller / tareas** · **Comercio** · **Mundo visual**.
 
-1. Arranca un servidor compatible (por ejemplo Ollama).
-2. En **Configuración**, elige `local` u `openai-compatible`.
-3. URL base de ejemplo: `http://127.0.0.1:11434/v1`
-4. Indica el `modelId`.
-5. Si hace falta clave, usa solo el nombre de la variable de entorno (nunca la pegues en el repo).
+```bash
+npm test                  # suite
+npm run validate          # test + lint + build
+npm run secret-scan       # no subas secretos
+npm run backup:demo       # demo de respaldo
+npm run build && npm start
+```
 
-Sin modelo configurado, la UI muestra instrucciones reales y no simula inteligencia.
+---
+
+## Claves = upgrades, no requisitos
+
+Puedes arrancar **sin** modelo ni API keys. La app no simula inteligencia.
+
+Cuando quieras potencia:
+
+1. Arranca un servidor compatible (p. ej. **Ollama**).
+2. En la app → **Configuración**.
+3. Proveedor `local` u `openai-compatible`, URL base (`http://127.0.0.1:11434/v1`) y `modelId`.
+4. Si hace falta clave: solo el **nombre** de la variable de entorno.
+
+Detalle: [docs/MODELS.md](docs/MODELS.md) · [docs/INSTALL.md](docs/INSTALL.md)
+
+---
+
+## Path 1 — Arranque rápido (probar y mirar)
+
+Para revisar la demo, explorar la UI y aportar ideas o issues.
+
+1. Clona e instala (bloque de Path 2).
+2. `npm run doctor` → `npm run dev`
+3. Abre [http://localhost:3000](http://localhost:3000)
+
+**Windows · macOS · Linux** (Node en PATH). Datos en `./data/`.
+
+¿Falló antes? Borra `node_modules` y `.next`, `npm ci`, doctor otra vez → [fallos comunes](docs/INSTALL.md#fallos-comunes).
+
+## Path 2 — Terminal / coding agent
+
+**Node.js 20.x o 22.x** (recomendado **22 LTS**, como CI). **npm 10+**.
+
+```bash
+git clone https://github.com/pascasio01/Allviewser.git
+cd Allviewser
+npm ci
+npm run doctor
+npm run dev
+```
+
+Luego poténcialo **en la app**, no en un archivo suelto del repo.
+
+---
+
+## Alcance v0.1
+
+**Incluye**
+
+- UI en español (i18n preparada)
+- Proyectos, memoria, tareas, idempotencia
+- Adaptadores de modelo sin respuestas inventadas sin proveedor
+- Taller CLI + tests de comportamiento
+- Export/restore con checksum
+- Mundo visual con animación 3D ligera
+- Comercio inmersivo sandbox (`/comercio`)
+
+**No incluye (aún / no se promete)**
+
+- Conciencia, emociones, “IA omnisciente”
+- Voz, visión, mapas o motor 3D completo
+- Continuidad remota desplegada
+- Pagos o reparto reales
+- Licencia y merge de código de terceros (decisión del titular)
+
+---
 
 ## Documentación
 
 | Documento | Contenido |
 |-----------|-----------|
-| [ARCHITECTURE](docs/ARCHITECTURE.md) | Diseño del núcleo |
-| [COMMERCE](docs/COMMERCE.md) | Módulo de comercio (aislado) |
 | [INSTALL](docs/INSTALL.md) | Instalación detallada |
-| [MODELS](docs/MODELS.md) | Adaptadores de modelo |
-| [PERMISSIONS](docs/PERMISSIONS.md) | Modelo de permisos |
-| [BACKUP](docs/BACKUP.md) | Respaldo y restauración |
-| [VALIDATION_REPORT](docs/VALIDATION_REPORT.md) | Comprobaciones ejecutadas |
+| [ARCHITECTURE](docs/ARCHITECTURE.md) | Diseño del núcleo |
+| [COMMERCE](docs/COMMERCE.md) | Comercio aislado |
+| [MODELS](docs/MODELS.md) | Modelos / costes |
+| [PERMISSIONS](docs/PERMISSIONS.md) | Permisos |
+| [BACKUP](docs/BACKUP.md) | Respaldo |
+| [VALIDATION_REPORT](docs/VALIDATION_REPORT.md) | Comprobaciones |
 | [PENDING_DECISIONS](docs/PENDING_DECISIONS.md) | Decisiones abiertas |
 | [ROADMAP](ROADMAP.md) | Hoja de ruta |
-| [AUTHORS](AUTHORS) | Autoría |
 | [CONTRIBUTING](CONTRIBUTING.md) · [SECURITY](SECURITY.md) · [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) | Comunidad |
-| [CHANGELOG](CHANGELOG.md) · [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md) | Cambios y avisos |
 
 ## Seguridad (resumen)
 
-Espacio de archivos aislado por proyecto, red denegada por defecto en herramientas, secretos fuera del código, y confirmación en acciones sensibles. El agente no puede ampliar sus propios permisos ni alterar pruebas de aceptación para autoaprobarse.
+Sandbox por proyecto, red denegada por defecto en herramientas, secretos fuera del código, confirmación en acciones sensibles. El agente no se autoamplía permisos ni altera pruebas para autoaprobarse.
 
-## Contribuciones
+## Contribuciones — míralo y aporta
 
-Se aceptan propuestas no confidenciales (ideas, bugs, diseño). La fusión de código espera a licencia y términos definidos por el titular. Ver [CONTRIBUTING.md](CONTRIBUTING.md).
+Pruébalo en local y aporta: ideas, bugs, accesibilidad, diseño, seguridad responsable.
+
+- Issues con plantilla
+- Fusión de código de terceros: espera **licencia** del titular
+
+Ver [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Repositorio
 
-https://github.com/pascasio01/Allviewser  
+https://github.com/pascasio01/Allviewser
 
 Proyecto independiente. No mezclar secretos, datos ni identidad con otros proyectos.

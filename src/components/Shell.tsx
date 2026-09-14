@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { brand } from "@/lib/brand";
 import { t } from "@/lib/i18n/es";
 import { useAppState } from "./AppProvider";
+import { AiCorePanel } from "./AiCorePanel";
 
 const links = [
   { href: "/", key: "home" as const },
@@ -25,10 +26,13 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const { projectId, projects, setProjectId, config } = useAppState();
 
   return (
-    <div className={`app-shell ${config?.reducedMotion ? "reduce-motion" : ""}`}>
+    <div className={`app-shell theme-dim ${config?.reducedMotion ? "reduce-motion" : ""}`} data-theme={config?.theme ?? "dim"}>
       <aside className="sidebar" aria-label="Navegación principal">
-        <p className="brand-mark">{brand.shortName}</p>
-        <p className="brand-sub">{brand.provisionalName}</p>
+        <div className="brand-block">
+          <p className="brand-mark">{brand.shortName}</p>
+          <p className="brand-sub">{brand.provisionalName}</p>
+          <AiCorePanel compact />
+        </div>
         <nav className="nav-list">
           {links.map((l) => (
             <Link

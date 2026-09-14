@@ -15,6 +15,7 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci
+      - run: npm run doctor
       - run: npm run secret-scan
       - run: npm test
       - run: npm run backup:demo

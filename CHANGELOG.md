@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.1.4 — 2026-09-14
+
+### Añadido
+
+- Núcleo de IA real: `GET /api/ai/status` + sondeo de proveedor (`/models`) con latencia.
+- Panel **Motor cognitivo** en inicio y chip de estado en barra lateral / conversación.
+- Tema futurista `dim` (HUD, orbe IA, módulos, scan hero) con `prefers-reduced-motion`.
+- Hero tecnológico y README orientados a IA útil (sin teatro).
+
+## 0.1.3 — 2026-09-14
+
+### Añadido
+
+- Presentación visual de producto: hero, diagrama SVG animado y mapa de ecosistema en `docs/assets/`.
+- README estilo “landing” (badges, arquitectura, quick start, casos de uso) para que se vea poderoso y fácil de aportar.
+- Mundo visual con profundidad 3D ligera (CSS + parallax suave) y hero animado en inicio; respeta `prefers-reduced-motion`.
+
+## 0.1.2 — 2026-09-14
+
+### Añadido
+
+- Guía de instalación profesional (Path 1 arranque rápido / Path 2 terminal) en `README.md` y `docs/INSTALL.md`.
+- Script `npm run doctor` (`scripts/doctor.ts`) para validar Node, npm, lockfile, datos y upgrades opcionales.
+- Campo `engines` en `package.json` (Node 20–24, npm 10+).
+- `CONTRIBUTING.md` actualizado para invitar a probar, mirar y aportar con Issues.
+
 ## 0.1.1 — 2026-09-13
 
 ### Añadido

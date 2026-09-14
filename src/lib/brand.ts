@@ -3,16 +3,17 @@
  * Cambiar aquí actualiza la identidad visible de la aplicación.
  */
 export const brand = {
-  provisionalName: "Compañero Digital — Proyecto Independiente",
-  shortName: "Compañero Digital",
-  productCode: "companero-digital",
-  tagline: "Un compañero con herramientas, memoria y taller — sin promesas imposibles.",
+  provisionalName: "Allviewser — Compañero Digital",
+  shortName: "Allviewser",
+  productCode: "allviewser",
+  tagline:
+    "Compañero digital local-first con IA real: memoria, taller y herramientas — útil hoy, evolutivo mañana.",
   founder: {
     name: "Pascasio Emmanuel Reynoso Reyes",
     role: "Creador, fundador y CEO",
   },
-  version: "0.1.0",
-  status: "primera-version-funcional",
+  version: "0.1.4",
+  status: "ia-real-futurista",
 } as const;
 
 export type Brand = typeof brand;
