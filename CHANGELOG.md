@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.2 — 2026-09-14
+
+### Añadido
+
+- Guía de instalación profesional (Path 1 arranque rápido / Path 2 terminal) en `README.md` y `docs/INSTALL.md`.
+- Script `npm run doctor` (`scripts/doctor.ts`) para validar Node, npm, lockfile, datos y upgrades opcionales.
+- Campo `engines` en `package.json` (Node 20–24, npm 10+).
+- `CONTRIBUTING.md` actualizado para invitar a probar, mirar y aportar con Issues.
+
 ## 0.1.1 — 2026-09-13
 
 ### Añadido
