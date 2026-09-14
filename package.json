@@ -1,0 +1,51 @@
+{
+  "name": "companero-digital",
+  "version": "0.2.1",
+  "private": true,
+  "description": "Proyecto independiente (repo provisional Allviewser). Marca pública en src/lib/brand.ts — sin registro afirmado.",
+  "author": {
+    "name": "Pascasio Emmanuel Reynoso Reyes",
+    "url": "https://github.com/pascasio01"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pascasio01/Allviewser.git"
+  },
+  "homepage": "https://github.com/pascasio01/Allviewser",
+  "bugs": {
+    "url": "https://github.com/pascasio01/Allviewser/issues"
+  },
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "npm run test && npm run lint && npm run build",
+    "backup:demo": "tsx scripts/backup-restore-demo.ts",
+    "secret-scan": "tsx scripts/secret-scan.ts"
+  },
+  "dependencies": {
+    "next": "15.5.25",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "uuid": "^14.0.2",
+    "zod": "^4.6.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/uuid": "^10.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.25",
+    "tailwindcss": "^4",
+    "tsx": "^4.20.5",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  }
+}
